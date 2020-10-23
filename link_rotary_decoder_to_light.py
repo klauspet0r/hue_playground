@@ -41,8 +41,10 @@ print(str(lamplist))
 
 selection_menu = SelectionMenu(lamplist)
 
-menu.append_item(selection_menu)
-menu.show()
+selection_menu.show()
+
+# menu.append_item(selection_menu)
+# menu.show()
 
 
 # while True:
