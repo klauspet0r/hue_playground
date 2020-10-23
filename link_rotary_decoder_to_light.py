@@ -1,6 +1,8 @@
 import phue
+import sys
 
-bridge = phue.Bridge('192.168.2.100')
+bridge = phue.Bridge(str(sys.argv[1]))
+
 
 
 bridge.connect()
