@@ -37,6 +37,8 @@ for key,values in api_response['lights'].items():
 
     lamplist.append(key)
 
+print(str(lamplist))
+
 selection_menu = SelectionMenu(lamplist)
 
 menu.append_item(selection_menu)
