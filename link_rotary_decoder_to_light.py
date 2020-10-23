@@ -13,6 +13,8 @@ bridge = phue.Bridge(str(bridge_ip))
 
 while True:
 
+    print('Push Button to connect to bridge @ IP:' + str(bridge_ip))
+
     if button.is_pressed:
         bridge.connect()
 
