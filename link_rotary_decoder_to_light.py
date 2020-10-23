@@ -24,10 +24,7 @@ while(True):
             print("#" + key + ' ' + value['name'])
             #for entry in api_response['lights'][key].items():
                 #print(entry['name'])
-
-    if button.is_released:
         break
-
 
 
 
