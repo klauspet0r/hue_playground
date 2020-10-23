@@ -40,6 +40,8 @@ for key,values in api_response['lights'].items():
 selection_menu = SelectionMenu(lamplist)
 
 menu.append_item(selection_menu)
+menu.show()
+
 
 # while True:
 #
