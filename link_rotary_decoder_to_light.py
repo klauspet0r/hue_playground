@@ -1,24 +1,29 @@
 import phue
 import sys
 from gpiozero import Button
-import RPi.GPIO as GPIO
-import threading
-from time import sleep
+#import RPi.GPIO as GPIO
+#import threading
+#from time import sleep
 
 button = Button(24)  # TODO:
 
-bridge = phue.Bridge(str(sys.argv[1]))
+bridge_ip = str(sys.argv[1])
 
-bridge.connect()
+bridge = phue.Bridge(str(bridge_ip))
 
-api_response = bridge.get_api()
+while True:
+    bridge.connect()
 
-print('Press button to get Lampnames\n')
+    api_response = bridge.get_api()
+    print('Connected to bridge @ IP ' + str(bridge_ip) + '\n')
+    print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
+    break
+
+print('\nPress button to get Lampnames\n')
 
 while True:
 
     if button.is_pressed:
-        print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
 
         print('All lamp names: \n')
         print('+++++++++++++++ \n')
