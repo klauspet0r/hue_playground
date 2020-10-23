@@ -3,7 +3,7 @@ import sys
 from gpiozero import Button
 #import RPi.GPIO as GPIO
 #import threading
-#from time import sleep
+from time import sleep
 
 button = Button(24)  # TODO:
 
@@ -14,6 +14,7 @@ bridge = phue.Bridge(str(bridge_ip))
 while True:
 
     print('Push Button to connect to bridge @ IP:' + str(bridge_ip))
+    button.wait_for_press()
 
     if button.is_pressed:
         bridge.connect()
