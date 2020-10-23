@@ -13,6 +13,8 @@ bridge.connect()
 
 api_response = bridge.get_api()
 
+print('Press button to get Lampnames')
+
 while(True):
 
     if button.is_pressed:
