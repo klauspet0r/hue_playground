@@ -4,12 +4,16 @@ from gpiozero import Button
 #import RPi.GPIO as GPIO
 #import threading
 from time import sleep
+from consolemenu import *
+from consolemenu.items import *
 
 button = Button(24)  # TODO:
 
 bridge_ip = str(sys.argv[1])
 
 bridge = phue.Bridge(str(bridge_ip))
+
+menu = ConsoleMenu("Lamps", "")
 
 while True:
 
@@ -24,16 +28,27 @@ while True:
         print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
         break
 
-print('\nPress button to get Lampnames\n')
+print('\n Press button to get Lampnames\n')
 
-while True:
 
-    if button.is_pressed:
+lamplist =[]
 
-        print('All lamp names: \n')
-        print('+++++++++++++++ \n')
-        for key, value in api_response['lights'].items():
-            print("#" + key + ' ' + value['name'])
-            # for entry in api_response['lights'][key].items():
-            # print(entry['name'])
-        break
+for key,values in api_response['lights'].items():
+
+    lamplist.append(key)
+
+selection_menu = SelectionMenu(lamplist)
+
+menu.append_item(selection_menu)
+
+# while True:
+#
+#     if button.is_pressed:
+#
+#         print('All lamp names: \n')
+#         print('+++++++++++++++ \n')
+#         for key, value in api_response['lights'].items():
+#             print("#" + key + ' ' + value['name'])
+#             # for entry in api_response['lights'][key].items():
+#             # print(entry['name'])
+#         break
