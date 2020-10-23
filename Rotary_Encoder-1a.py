@@ -45,7 +45,7 @@ def init():
     Initializes a number of settings and prepares the environment
     before we start the main program.
     '''
-    print "Rotary Encoder Test Program"
+    print("Rotary Encoder Test Program")
 
     GPIO.setwarnings(True)
 
@@ -95,7 +95,7 @@ def rotation_decode(Enc_A):
 
     if (Switch_A == 1) and (Switch_B == 0) : # A then B ->
         counter += 1
-        print "direction -> ", counter
+        print("direction -> ", counter)
         # at this point, B may still need to go high, wait for it
         while Switch_B == 0:
             Switch_B = GPIO.input(Enc_B)
@@ -106,8 +106,8 @@ def rotation_decode(Enc_A):
 
     elif (Switch_A == 1) and (Switch_B == 1): # B then A <-
         counter -= 1
-        print "direction <- ", counter
-         # A is already high, wait for A to drop to end the click cycle
+        print("direction <- ", counter)
+        # A is already high, wait for A to drop to end the click cycle
         while Switch_A == 1:
             Switch_A = GPIO.input(Enc_A)
         return
