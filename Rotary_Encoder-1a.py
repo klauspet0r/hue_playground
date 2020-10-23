@@ -36,8 +36,8 @@ __author__ = 'Paul Versteeg'
 counter = 10  # starting point for the running directional counter
 
 # GPIO Ports
-Enc_A = 23  # Encoder input A: input GPIO 23 (active high)
-Enc_B = 24  # Encoder input B: input GPIO 24 (active high)
+Enc_A = 22  # Encoder input A: input GPIO 23 (active high)
+Enc_B = 23  # Encoder input B: input GPIO 24 (active high)
 
 
 def init():
