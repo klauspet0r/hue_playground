@@ -12,12 +12,14 @@ bridge_ip = str(sys.argv[1])
 bridge = phue.Bridge(str(bridge_ip))
 
 while True:
-    bridge.connect()
 
-    api_response = bridge.get_api()
-    print('Connected to bridge @ IP ' + str(bridge_ip) + '\n')
-    print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
-    break
+    if button.is_pressed:
+        bridge.connect()
+
+        api_response = bridge.get_api()
+        print('Connected to bridge @ IP ' + str(bridge_ip) + '\n')
+        print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
+        break
 
 print('\nPress button to get Lampnames\n')
 
