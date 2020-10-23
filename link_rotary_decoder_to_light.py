@@ -33,9 +33,12 @@ print('\n Press button to get Lampnames\n')
 
 lamplist =[]
 
-for key,value in api_response['lights'].items():
+for item in api_response['lights'].items():
 
-    lamplist.append(value['name'])
+    lamplist.append(str(item['name']))
+
+# for key, value in api_response['lights'].items():
+#         print("#" + key + ' ' + value['name'])
 
 print(str(lamplist))
 
