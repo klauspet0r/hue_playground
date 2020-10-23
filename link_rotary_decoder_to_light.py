@@ -9,11 +9,12 @@ bridge.connect()
 
 api_response = bridge.get_api()
 
-print('length of api dictionary is: ' + str(len(api_response['lights'])))
+print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
 
 print('All lamp names: \n')
+print('+++++++++++++++ \n')
 for key, value in api_response['lights'].items():
-    print("#" + key + ' Lampname: ' + value['name'])
+    print("#" + key + ' ' + value['name'])
     #for entry in api_response['lights'][key].items():
         #print(entry['name'])
 
