@@ -3,42 +3,46 @@ from time import sleep
 
 class RotaryEncoder:
 
-    def __init__(self, clk_pin, dt_pin):
-        self.clk_pin = clk_pin
-        self.dt_pin = dt_pin
-        #self.button_pin = button_pin #TODO: add a button to this class
+    decoder_counter = 1
+
+    def __init__(self, clk, dt):
+
+        GPIO.setwarnings(True)
+
+        # Use the Raspberry Pi BCM pins
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(clk_pin, GPIO.IN)  # pull-ups are too weak, they introduce noise
-        GPIO.setup(dt_pin, GPIO.IN)
+
+        # define the Encoder switch inputs
+        GPIO.setup(clk, GPIO.IN)  # pull-ups are too weak, they introduce noise
+        GPIO.setup(dt, GPIO.IN)
+
         # setup an event detection thread for the A encoder switch
-        GPIO.add_event_detect(clk_pin, GPIO.RISING, callback=self.decode_rotation, bouncetime=2)
+        GPIO.add_event_detect(clk, GPIO.RISING, callback=self.decode_rotation, bouncetime=2)  # bouncetime in mSec
 
-    def decode_rotation(self):
-        global counter
-        sleep(0.002) #additional debounce time
-        # read both of the switches
-        Switch_A = GPIO.input(self.clk_pin)
-        Switch_B = GPIO.input(self.dt_pin)
+        return
 
-        if (Switch_A == 1) and (Switch_B == 0):  # A then B ->
-            counter += 1
-            direction = 1
-            print(direction, counter)
-            # at this point, B may still need to go high, wait for it
-            while Switch_B == 0:
-                Switch_B = GPIO.input(self.dt_pin)
+    def decode_rotation(clk, dt, decoder_counter):
+
+        sleep(0.002)  # debounce time
+
+        CLK = GPIO.input(clk)
+        DT = GPIO.input(dt)
+
+        sleep(0.002)  # extra 2 mSec de-bounce time
+
+        if (CLK == 1) and (DT == 0):
+            decoder_counter += 1
+            while DT == 0:
+                DT = GPIO.input(dt)
             # now wait for B to drop to end the click cycle
-            while Switch_B == 1:
-                Switch_B = GPIO.input(self.dt_pin)
+            while DT == 1:
+                DT = GPIO.input(dt)
             return
 
-        elif (Switch_A == 1) and (Switch_B == 1):  # B then A <-
-            counter -= 1
-            direction = -1
-            print(direction, counter)
-            # A is already high, wait for A to drop to end the click cycle
-            while Switch_A == 1:
-                Switch_A = GPIO.input(self.clk_pin)
+        elif (CLK == 1) and (DT == 1):
+            decoder_counter -= 1
+            while CLK == 1:
+                CLK = GPIO.input(clk)
             return
 
         else:  # discard all other combinations
