@@ -50,11 +50,11 @@ def decode_rotation(clk):
     else:  # discard all other combinations
         return
 
-
+init_rotary_decoder()
 while (True):
 
     try:
-        init_rotary_decoder()
+
         sleep(1)
 
     except KeyboardInterrupt:  # Ctrl-C to terminate the program
