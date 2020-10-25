@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 
-def rotation_decode():
+def rotation_decode(Enc_A):
         print("something happend on the decoder")
 
 counter = 0
