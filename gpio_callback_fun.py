@@ -3,7 +3,6 @@ from time import sleep
 
 
 def rotation_decode():
-    while(True):
         print("something happend on the decoder")
 
 counter = 0
@@ -23,4 +22,13 @@ GPIO.setup(Enc_B, GPIO.IN)
 
 # setup an event detection thread for the A encoder switch
 GPIO.add_event_detect(Enc_A, GPIO.RISING, callback=rotation_decode, bouncetime=2) # bouncetime in mSec
+
+
+while(True):
+
+    try:
+        sleep(1)
+
+    except KeyboardInterrupt: # Ctrl-C to terminate the program
+        GPIO.cleanup()
 
