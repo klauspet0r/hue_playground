@@ -8,7 +8,6 @@ dt = 23  # Encoder input B: input GPIO 24 (active high)
 list_index = 10
 
 
-
 # gpio_list = [clk, dt]
 
 
@@ -27,11 +26,11 @@ def init_rotary_decoder():
 
     return
 
+
 list_of_rooms = ['Wohnzimmer', 'Kueche', 'Schlafzimmer', 'Flur']
 
 
 def decode_rotation(clk):
-
     global list_index
 
     sleep(0.002)  # extra 2 mSec de-bounce time
@@ -57,7 +56,7 @@ def decode_rotation(clk):
         list_index -= 1
         if list_index < 1 or list_index > len(list_of_rooms):
             list_index = len(list_of_rooms)
-        print('Index: ' + str(list_index) + 'room: ' + list_of_rooms[list_index])
+        print('list index: ' + str(list_index) + ' room: ' + list_of_rooms[list_index])
         while CLK == 1:
             CLK = GPIO.input(clk)
         return
