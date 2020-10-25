@@ -50,7 +50,10 @@ def decode_rotation(clk):
         if list_index > len(list_of_rooms) - 1:
             list_index = 0
         cls()
-        print('#: ' + str(list_index) + ' Raum: ' + list_of_rooms[list_index])
+        print('\n')
+        print('********************************************')
+        print('#: ' + str(list_index + 1) + ' Raum: ' + list_of_rooms[list_index])
+        print('********************************************')
         while DT == 0:
             DT = GPIO.input(dt)
         # now wait for B to drop to end the click cycle
@@ -63,7 +66,10 @@ def decode_rotation(clk):
         if list_index < 0 or list_index > len(list_of_rooms):
             list_index = len(list_of_rooms) - 1
         cls()
-        print('#: ' + str(list_index) + ' Raum: ' + list_of_rooms[list_index])
+        print('\n')
+        print('********************************************')
+        print('#: ' + str(list_index + 1) + ' Raum: ' + list_of_rooms[list_index])
+        print('********************************************')
         while CLK == 1:
             CLK = GPIO.input(clk)
         return
