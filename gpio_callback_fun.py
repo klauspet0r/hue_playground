@@ -5,6 +5,8 @@ from time import sleep
 clk = 22  # Encoder input A: input GPIO 23 (active high)
 dt = 23  # Encoder input B: input GPIO 24 (active high)
 
+list_index = 10
+
 
 
 # gpio_list = [clk, dt]
