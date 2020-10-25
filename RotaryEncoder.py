@@ -1,11 +1,16 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
+
 class RotaryEncoder:
 
-    decoder_counter = 1
+    decoder_counter = None
+    value_changed = None
 
     def __init__(self, clk, dt):
+
+        self.value_changed = False
+        self.decoder_counter = 0
 
         GPIO.setwarnings(True)
 
@@ -21,7 +26,7 @@ class RotaryEncoder:
 
         return
 
-    def decode_rotation(clk, dt, decoder_counter):
+    def decode_rotation(self, clk, dt):
 
         sleep(0.002)  # debounce time
 
@@ -31,20 +36,25 @@ class RotaryEncoder:
         sleep(0.002)  # extra 2 mSec de-bounce time
 
         if (CLK == 1) and (DT == 0):
-            decoder_counter += 1
+            self.decoder_counter += 1
             while DT == 0:
                 DT = GPIO.input(dt)
-            # now wait for B to drop to end the click cycle
+
             while DT == 1:
                 DT = GPIO.input(dt)
+            value_changed = True
             return
 
         elif (CLK == 1) and (DT == 1):
-            decoder_counter -= 1
+            self.decoder_counter -= 1
             while CLK == 1:
                 CLK = GPIO.input(clk)
+            value_changed = True
             return
 
         else:  # discard all other combinations
+            value_changed = False
             return
 
+    def get_value_change(self):
+        return self.value_changed
