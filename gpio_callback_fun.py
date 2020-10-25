@@ -43,7 +43,7 @@ def decode_rotation(clk):
     if (CLK == 1) and (DT == 0):
         list_index += 1
         if list_index > len(list_of_rooms):
-            list_index = 1
+            list_index = 0
         print('list index: ' + str(list_index) + 'room: ' + list_of_rooms[list_index])
         while DT == 0:
             DT = GPIO.input(dt)
@@ -54,7 +54,7 @@ def decode_rotation(clk):
 
     elif (CLK == 1) and (DT == 1):
         list_index -= 1
-        if list_index < 1 or list_index > len(list_of_rooms):
+        if list_index < 0 or list_index > len(list_of_rooms):
             list_index = len(list_of_rooms)
         print('list index: ' + str(list_index) + ' room: ' + list_of_rooms[list_index])
         while CLK == 1:
