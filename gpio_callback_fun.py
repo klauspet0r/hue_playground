@@ -52,12 +52,10 @@ def decode_rotation(clk):
         return
 
 
-init_rotary_decoder()
-while True:
-
-    try:
-
+try:
+    init_rotary_decoder()
+    while True:
         sleep(1)
 
-    except KeyboardInterrupt:  # Ctrl-C to terminate the program
-        GPIO.cleanup()
+except KeyboardInterrupt:  # Ctrl-C to terminate the program
+    GPIO.cleanup()
