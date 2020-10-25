@@ -31,6 +31,7 @@ list_of_rooms = ['Wohnzimmer', 'Kueche', 'Schlafzimmer', 'Flur']
 
 
 def decode_rotation(clk):
+
     global list_index
 
     sleep(0.002)  # extra 2 mSec de-bounce time
@@ -41,6 +42,7 @@ def decode_rotation(clk):
     sleep(0.002)  # extra 2 mSec de-bounce time
 
     if (CLK == 1) and (DT == 0):
+        print(str(list_index))
         list_index += 1
         print('list index: ' + str(list_index) + 'room: ' + list_of_rooms[list_index])
         if list_index > 4:
