@@ -10,7 +10,7 @@ try:
 
         while rotary_encoder.get_value_change():
             print(str(rotary_encoder.decoder_counter))
-            sleep(1)
+            sleep(0.01)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     GPIO.cleanup()

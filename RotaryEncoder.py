@@ -39,6 +39,7 @@ class RotaryEncoder:
         sleep(0.002)  # extra 2 mSec de-bounce time
 
         if (CLK == 1) and (DT == 0):
+            print(str('self.decoder_counter += 1'))
             self.decoder_counter += 1
             while DT == 0:
                 DT = GPIO.input(self.dt)
@@ -49,6 +50,7 @@ class RotaryEncoder:
             return
 
         elif (CLK == 1) and (DT == 1):
+            print(str('self.decoder_counter -= 1'))
             self.decoder_counter -= 1
             while CLK == 1:
                 CLK = GPIO.input(self.clk)
