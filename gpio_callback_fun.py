@@ -2,8 +2,8 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 # GPIO Ports
-clk = 23  # Encoder input A: input GPIO 23 (active high)
-dt = 24  # Encoder input B: input GPIO 24 (active high)
+clk = 22  # Encoder input A: input GPIO 23 (active high)
+dt = 23  # Encoder input B: input GPIO 24 (active high)
 
 #gpio_list = [clk, dt]
 
