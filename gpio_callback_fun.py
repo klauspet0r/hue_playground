@@ -5,7 +5,8 @@ from time import sleep
 clk = 22  # Encoder input A: input GPIO 23 (active high)
 dt = 23  # Encoder input B: input GPIO 24 (active high)
 
-#gpio_list = [clk, dt]
+
+# gpio_list = [clk, dt]
 
 
 def init_rotary_decoder():
@@ -50,8 +51,9 @@ def decode_rotation(clk):
     else:  # discard all other combinations
         return
 
+
 init_rotary_decoder()
-while (True):
+while True:
 
     try:
 
