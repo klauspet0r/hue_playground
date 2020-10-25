@@ -44,9 +44,9 @@ def decode_rotation(clk):
     if (CLK == 1) and (DT == 0):
         print(str(list_index))
         list_index += 1
-        print('list index: ' + str(list_index) + 'room: ' + list_of_rooms[list_index])
         if list_index > 4:
             list_index = 1
+        print('list index: ' + str(list_index) + 'room: ' + list_of_rooms[list_index])
         while DT == 0:
             DT = GPIO.input(dt)
         # now wait for B to drop to end the click cycle
