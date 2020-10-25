@@ -26,29 +26,29 @@ class RotaryEncoder:
 
         return
 
-    def decode_rotation(self, clk, dt):
+    def decode_rotation(self, *args):
 
         sleep(0.002)  # debounce time
 
-        CLK = GPIO.input(clk)
-        DT = GPIO.input(dt)
+        CLK = GPIO.input(args.clk)
+        DT = GPIO.input(args.dt)
 
         sleep(0.002)  # extra 2 mSec de-bounce time
 
         if (CLK == 1) and (DT == 0):
             self.decoder_counter += 1
             while DT == 0:
-                DT = GPIO.input(dt)
+                DT = GPIO.input(args.dt)
 
             while DT == 1:
-                DT = GPIO.input(dt)
+                DT = GPIO.input(args.dt)
             value_changed = True
             return
 
         elif (CLK == 1) and (DT == 1):
             self.decoder_counter -= 1
             while CLK == 1:
-                CLK = GPIO.input(clk)
+                CLK = GPIO.input(args.clk)
             value_changed = True
             return
 
