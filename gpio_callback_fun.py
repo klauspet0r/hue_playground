@@ -3,7 +3,8 @@ from time import sleep
 
 
 def rotation_decode():
-    print("something happend on the decoder")
+    while(True):
+        print("something happend on the decoder")
 
 counter = 0
 
