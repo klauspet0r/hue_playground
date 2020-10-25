@@ -29,7 +29,7 @@ class RotaryEncoder:
 
         return
 
-    def decode_rotation(self):
+    def decode_rotation(self, clk):
 
         sleep(0.002)  # debounce time
 
