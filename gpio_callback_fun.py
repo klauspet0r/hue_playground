@@ -26,6 +26,7 @@ def init_rotary_decoder():
 
 
 def decode_rotation(clk):
+    sleep(0.002)  # extra 2 mSec de-bounce time
     # read both of the switches
     CLK = GPIO.input(clk)
     DT = GPIO.input(dt)
