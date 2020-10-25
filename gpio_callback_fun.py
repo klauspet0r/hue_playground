@@ -5,7 +5,7 @@ from time import sleep
 clk = 23  # Encoder input A: input GPIO 23 (active high)
 dt = 24  # Encoder input B: input GPIO 24 (active high)
 
-gpio_list = [clk, dt]
+#gpio_list = [clk, dt]
 
 
 def init_rotary_decoder():
@@ -15,7 +15,8 @@ def init_rotary_decoder():
     GPIO.setmode(GPIO.BCM)
 
     # define the Encoder switch inputs
-    GPIO.setup(gpio_list, GPIO.IN)  # pull-ups are too weak, they introduce noise
+    GPIO.setup(clk, GPIO.IN)  # pull-ups are too weak, they introduce noise
+    GPIO.setup(dt, GPIO.IN)
 
     # setup an event detection thread for the A encoder switch
     GPIO.add_event_detect(clk, GPIO.RISING, callback=decode_rotation, bouncetime=2)  # bouncetime in mSec
