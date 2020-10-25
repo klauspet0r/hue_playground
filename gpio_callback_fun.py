@@ -10,9 +10,22 @@ def rotation_decode(Enc_A):
 
     if (Switch_A == 1) and (Switch_B == 0):
         print("clockwise")
+        while Switch_B == 0:
+            Switch_B = GPIO.input(Enc_B)
+        # now wait for B to drop to end the click cycle
+        while Switch_B == 1:
+            Switch_B = GPIO.input(Enc_B)
+        return
 
     elif (Switch_A == 1) and (Switch_B == 1):
         print("counterclockwise")
+        # A is already high, wait for A to drop to end the click cycle
+        while Switch_A == 1:
+            Switch_A = GPIO.input(Enc_A)
+        return
+    
+    else: # discard all other combinations
+        return
 
 counter = 0
 
