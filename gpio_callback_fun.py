@@ -21,8 +21,10 @@ def init_rotary_decoder():
     GPIO.setup(clk, GPIO.IN)  # pull-ups are too weak, they introduce noise
     GPIO.setup(dt, GPIO.IN)
 
+    callback_function = 'decode_rotation'
+
     # setup an event detection thread for the A encoder switch
-    GPIO.add_event_detect(clk, GPIO.RISING, callback=decode_rotation, bouncetime=2)  # bouncetime in mSec
+    GPIO.add_event_detect(clk, GPIO.RISING, callback=callback_function, bouncetime=2)  # bouncetime in mSec
 
     return
 
