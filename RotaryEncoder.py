@@ -3,14 +3,17 @@ from time import sleep
 
 
 class RotaryEncoder:
-
     decoder_counter = None
     value_changed = None
+    clk = None
+    dt = None
 
     def __init__(self, clk, dt):
 
         self.value_changed = False
         self.decoder_counter = 0
+        self.clk = clk
+        self.dt = dt
 
         GPIO.setwarnings(True)
 
@@ -26,29 +29,29 @@ class RotaryEncoder:
 
         return
 
-    def decode_rotation(self, *args):
+    def decode_rotation(self):
 
         sleep(0.002)  # debounce time
 
-        CLK = GPIO.input(args.clk)
-        DT = GPIO.input(args.dt)
+        CLK = GPIO.input(self.clk)
+        DT = GPIO.input(self.dt)
 
         sleep(0.002)  # extra 2 mSec de-bounce time
 
         if (CLK == 1) and (DT == 0):
             self.decoder_counter += 1
             while DT == 0:
-                DT = GPIO.input(args.dt)
+                DT = GPIO.input(self.dt)
 
             while DT == 1:
-                DT = GPIO.input(args.dt)
+                DT = GPIO.input(self.dt)
             value_changed = True
             return
 
         elif (CLK == 1) and (DT == 1):
             self.decoder_counter -= 1
             while CLK == 1:
-                CLK = GPIO.input(args.clk)
+                CLK = GPIO.input(self.clk)
             value_changed = True
             return
 
