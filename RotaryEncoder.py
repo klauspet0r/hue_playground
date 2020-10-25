@@ -26,8 +26,7 @@ class RotaryEncoder:
 
         return
 
-    @classmethod
-    def decode_rotation(cls, clk, dt):
+    def decode_rotation(self, clk, dt):
 
         sleep(0.002)  # debounce time
 
@@ -37,7 +36,7 @@ class RotaryEncoder:
         sleep(0.002)  # extra 2 mSec de-bounce time
 
         if (CLK == 1) and (DT == 0):
-            cls.decoder_counter += 1
+            self.decoder_counter += 1
             while DT == 0:
                 DT = GPIO.input(dt)
 
@@ -47,7 +46,7 @@ class RotaryEncoder:
             return
 
         elif (CLK == 1) and (DT == 1):
-            cls.decoder_counter -= 1
+            self.decoder_counter -= 1
             while CLK == 1:
                 CLK = GPIO.input(clk)
             value_changed = True
