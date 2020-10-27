@@ -58,10 +58,10 @@ try:
     print('\nConnected to bridge @ IP ' + str(bridge_ip) + '\n')
     print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
 
-    print(str(api_response['lights'].items()))
+    #print(str(api_response['lights'].items()))
 
     for key, value in api_response['lights'].items():
-        print(str(value['name'])+ '\n')
+        print(str(value['name']).encode('utf-8')+ '\n')
         lamplist.append(str(value['name']))
 
     rotary_encoder = RotaryEncoder(clk, dt, decode_rotation)
