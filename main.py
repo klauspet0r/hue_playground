@@ -19,7 +19,7 @@ def decode_rotation(clk):
 
     if (CLK == 1) and (DT == 0):
         decoder_counter += 1
-        print(str('decoder_counter += 1'))
+        print(str(decoder_counter))
         while DT == 0:
             DT = GPIO.input(dt)
 
@@ -30,7 +30,7 @@ def decode_rotation(clk):
 
     elif (CLK == 1) and (DT == 1):
         decoder_counter -= 1
-        print(str('decoder_counter -= 1'))
+        print(str(decoder_counter))
         while CLK == 1:
             CLK = GPIO.input(clk)
         value_changed = True
