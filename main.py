@@ -61,7 +61,7 @@ try:
     #print(str(api_response['lights'].items()))
 
     for key, value in api_response['lights'].items():
-        print(str(value['name']).encode('utf-8')+ '\n')
+        print(value['name'] + '\n')
         lamplist.append(str(value['name']))
 
     rotary_encoder = RotaryEncoder(clk, dt, decode_rotation)
