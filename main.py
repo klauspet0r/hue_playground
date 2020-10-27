@@ -6,8 +6,10 @@ clk = 22
 dt = 23
 decoder_counter = 0
 
-def decode_rotation(clk, decoder_counter):
+def decode_rotation(clk):
     sleep(0.002)  # debounce time
+
+    global decoder_counter
 
     CLK = GPIO.input(clk)
     DT = GPIO.input(dt)
