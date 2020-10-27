@@ -5,10 +5,11 @@ import RPi.GPIO as GPIO
 clk = 22
 dt = 23
 
-global decoder_counter
+
 
 
 def decode_rotation(clk):
+    global decoder_counter
     sleep(0.002)  # debounce time
 
     CLK = GPIO.input(clk)
