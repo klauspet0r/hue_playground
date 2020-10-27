@@ -1,10 +1,15 @@
 from RotaryEncoder import RotaryEncoder
+
 from time import sleep
+import sys
+
 import RPi.GPIO as GPIO
+import phue
 
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
 decoder_counter = 0
+lamplist = []
 
 
 def decode_rotation(clk):
@@ -42,6 +47,22 @@ def decode_rotation(clk):
 
 
 try:
+
+    bridge_ip = str(sys.argv[1])
+
+    bridge = phue.Bridge(str(bridge_ip))
+
+    bridge.connect()
+
+    api_response = bridge.get_api()
+    print('Connected to bridge @ IP ' + str(bridge_ip) + '\n')
+    print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
+
+
+
+    for key, value in api_response['lights'].items():
+        print(str(value['name']))
+        lamplist.append(str(value['name']))
 
     rotary_encoder = RotaryEncoder(clk, dt, decode_rotation)
 
