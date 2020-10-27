@@ -64,7 +64,7 @@ try:
         #print(value['name'] + '\n')
         lamplist.append(value['name'])
 
-        print(lamplist + '\n')
+        print(lamplist)
 
     rotary_encoder = RotaryEncoder(clk, dt, decode_rotation)
 
