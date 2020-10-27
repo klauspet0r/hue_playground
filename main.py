@@ -46,7 +46,7 @@ try:
     rotary_encoder = RotaryEncoder(clk, dt, decode_rotation)
 
     while True:
-        sleep(0.01)
+        sleep(1)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     GPIO.cleanup()
