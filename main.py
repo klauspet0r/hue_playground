@@ -55,13 +55,13 @@ try:
     bridge.connect()
 
     api_response = bridge.get_api()
-    print('Connected to bridge @ IP ' + str(bridge_ip) + '\n')
+    print('\nConnected to bridge @ IP ' + str(bridge_ip) + '\n')
     print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
 
-
+    print(str(api_response['lights'].items()))
 
     for key, value in api_response['lights'].items():
-        print(str(value['name']))
+        print(str(value['name'])+ '\n')
         lamplist.append(str(value['name']))
 
     rotary_encoder = RotaryEncoder(clk, dt, decode_rotation)
