@@ -2,9 +2,10 @@ from RotaryEncoder import RotaryEncoder
 from time import sleep
 import RPi.GPIO as GPIO
 
-clk = 22
-dt = 23
+clk = 22  # gpio pin for clk
+dt = 23  # gpio pin for dt
 decoder_counter = 0
+
 
 def decode_rotation(clk):
     sleep(0.002)  # debounce time
@@ -38,6 +39,7 @@ def decode_rotation(clk):
     else:  # discard all other combinations
         value_changed = False
         return
+
 
 try:
 
