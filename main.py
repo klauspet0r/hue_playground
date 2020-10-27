@@ -5,9 +5,10 @@ import RPi.GPIO as GPIO
 clk = 22
 dt = 23
 
+global decoder_counter
+
 
 def decode_rotation(clk):
-    decoder_counter = 0
     sleep(0.002)  # debounce time
 
     CLK = GPIO.input(clk)
@@ -16,7 +17,7 @@ def decode_rotation(clk):
     sleep(0.002)  # extra 2 mSec de-bounce time
 
     if (CLK == 1) and (DT == 0):
-        print(str('self.decoder_counter += 1'))
+        print(str('decoder_counter += 1'))
         decoder_counter += 1
         while DT == 0:
             DT = GPIO.input(dt)
@@ -27,7 +28,7 @@ def decode_rotation(clk):
         return
 
     elif (CLK == 1) and (DT == 1):
-        print(str('self.decoder_counter -= 1'))
+        print(str('decoder_counter -= 1'))
         decoder_counter -= 1
         while CLK == 1:
             CLK = GPIO.input(clk)
