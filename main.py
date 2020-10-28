@@ -3,9 +3,15 @@ from RotaryEncoder import RotaryEncoder
 
 from time import sleep
 import sys
+import os
+import locale
+
 
 import RPi.GPIO as GPIO
 import phue
+
+os.environ["PYTHONIOENCODING"] = "utf-8"
+myLocale=locale.setlocale(category=locale.LC_ALL, locale="de_DE.UTF-8");
 
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
@@ -59,12 +65,11 @@ try:
     print('\nConnected to bridge @ IP ' + str(bridge_ip) + '\n')
     print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
 
-    #print(str(api_response['lights'].items()))
+    # print(str(api_response['lights'].items()))
 
     for key, value in api_response['lights'].items():
-        print(str(value['name']) + '\n')
+        print(str(value['name']).encode('utf-8', errors='ignore') + '\n')
         lamplist.append(value['name'])
-
 
     print(lamplist)
 
