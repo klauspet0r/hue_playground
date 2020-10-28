@@ -1,3 +1,6 @@
-string_mit_scharfem_s = 'Stra√üe'
+# -*- coding: iso-8859-1 -*-
+string_mit_scharfem_s = u'Straﬂe'
+
+
 
 print(string_mit_scharfem_s)
