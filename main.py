@@ -62,7 +62,7 @@ try:
     #print(str(api_response['lights'].items()))
 
     for key, value in api_response['lights'].items():
-        print(str(value['name']).decode("iso-8859-1").encode("iso-8859-1") + '\n')
+        print(str(value['name']) + '\n')
         lamplist.append(value['name'])
 
 
