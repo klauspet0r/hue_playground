@@ -61,7 +61,7 @@ try:
     #print(str(api_response['lights'].items()))
 
     for key, value in api_response['lights'].items():
-        #print(value['name'] + '\n')
+        print(str(value['name']) + '\n')
         lamplist.append(value['name'])
 
 
