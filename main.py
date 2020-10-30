@@ -11,6 +11,7 @@ import phue
 
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
+sw = 24 #gpio pin for the button
 list_index = 0
 itemlist = []
 
@@ -22,9 +23,11 @@ def cls():
 def print_item():
     print('\n')
     print('++++++++++++++++++++++++++++++++++++++++++++')
-    print('*\n')
+    print('*')
+    print('*')
     print('*        #' + str(list_index + 1) + ' Group: ' + itemlist[list_index] + '')
-    print('*\n')
+    print('*')
+    print('*')
     print('++++++++++++++++++++++++++++++++++++++++++++')
 
 
@@ -84,7 +87,7 @@ try:
     for key, value in api_response['groups'].items():
         itemlist.append(value['name'])
 
-    rotary_encoder = RotaryEncoder(clk, dt, decode_rotation)
+    rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation)
 
     while True:
         sleep(1)
