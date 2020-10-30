@@ -4,14 +4,12 @@ from time import sleep
 import sys
 import os
 
-
 import RPi.GPIO as GPIO
 import phue
 
-
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
-sw = 24 #gpio pin for the button
+sw = 24  # gpio pin for the button
 list_index = 0
 itemlist = []
 
@@ -67,6 +65,7 @@ def decode_rotation(clk):
 
     else:  # discard all other combinations
         return
+
 
 def button_callback(sw):
     itemlist.clear()
