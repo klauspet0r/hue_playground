@@ -92,7 +92,7 @@ try:
     for key, value in api_response['groups'].items():
         itemlist.append(value['name'])
 
-    rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation)
+    rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation, button_callback)
 
     while True:
         sleep(1)
