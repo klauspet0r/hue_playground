@@ -6,20 +6,27 @@ import sys
 import os
 import locale
 
-
 import RPi.GPIO as GPIO
 import phue
 
-#os.environ["PYTHONIOENCODING"] = "utf-8"
-#myLocale=locale.setlocale(category=locale.LC_ALL, locale="de_DE.UTF-8");
+# os.environ["PYTHONIOENCODING"] = "utf-8"
+# myLocale=locale.setlocale(category=locale.LC_ALL, locale="de_DE.UTF-8");
 
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
 list_index = 0
 itemlist = []
 
+
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def print_item():
+    print('\n')
+    print('********************************************')
+    print('*    #' + str(list_index + 1) + ' Group: ' + itemlist[list_index])
+    print('********************************************')
 
 
 def decode_rotation(clk):
@@ -37,10 +44,8 @@ def decode_rotation(clk):
         if list_index > len(itemlist) - 1:
             list_index = 0
         cls()
-        print('\n')
-        print('********************************************')
-        print('#: ' + str(list_index + 1) + ' Raum: ' + itemlist[list_index])
-        print('********************************************')
+        print_item()
+
         while DT == 0:
             DT = GPIO.input(dt)
         # now wait for B to drop to end the click cycle
@@ -53,10 +58,7 @@ def decode_rotation(clk):
         if list_index < 0 or list_index > len(itemlist):
             list_index = len(itemlist) - 1
         cls()
-        print('\n')
-        print('********************************************')
-        print('#: ' + str(list_index + 1) + ' Raum: ' + itemlist[list_index])
-        print('********************************************')
+        print_item()
         while CLK == 1:
             CLK = GPIO.input(clk)
         return
