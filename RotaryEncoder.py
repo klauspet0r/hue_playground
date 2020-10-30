@@ -8,7 +8,7 @@ class RotaryEncoder:
     clk = None
     dt = None
 
-    def __init__(self, clk, dt, sw, decode_rotation):
+    def __init__(self, clk, dt, sw, decode_rotation, button_callback):
 
         self.value_changed = False
         self.decoder_counter = 0
@@ -27,7 +27,8 @@ class RotaryEncoder:
         GPIO.setup(sw, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
         # setup an event detection thread for the A encoder switch
-        GPIO.add_event_detect(clk, GPIO.RISING, callback=decode_rotation, bouncetime=2)  # bouncetime in mSec
+        GPIO.add_event_detect(clk, GPIO.RISING, callback=decode_rotation, bouncetime=20)  # bouncetime in mSec
+        GPIO.add_event_detect(sw, GPIO.RISING, callback=button_callback)
 
         return
 
