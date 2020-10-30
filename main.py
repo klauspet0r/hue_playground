@@ -65,8 +65,6 @@ try:
     print('\nConnected to bridge @ IP ' + str(bridge_ip) + '\n')
     print('Number of connected Lamps: ' + str(len(api_response['lights'])) + '\n')
 
-    print(api_response)
-
     # print(str(api_response['lights'].items()))
 
     for key, value in api_response['groups'].items():
