@@ -10,8 +10,8 @@ import locale
 import RPi.GPIO as GPIO
 import phue
 
-os.environ["PYTHONIOENCODING"] = "utf-8"
-myLocale=locale.setlocale(category=locale.LC_ALL, locale="de_DE.UTF-8");
+#os.environ["PYTHONIOENCODING"] = "utf-8"
+#myLocale=locale.setlocale(category=locale.LC_ALL, locale="de_DE.UTF-8");
 
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
