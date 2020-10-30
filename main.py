@@ -31,7 +31,7 @@ def print_item():
 def decode_rotation(clk):
     global list_index
 
-    sleep(0.002)  # extra 2 mSec de-bounce time
+    sleep(0.02)  # extra 2 mSec de-bounce time
     # read both of the switches
     CLK = GPIO.input(clk)
     DT = GPIO.input(dt)
