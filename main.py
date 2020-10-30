@@ -69,7 +69,7 @@ try:
 
     # print(str(api_response['lights'].items()))
 
-    for key, value in api_response['rooms'].items():
+    for key, value in api_response['groups'].items():
         print(str(value['name']) + '\n')
         lamplist.append(value['name'])
 
