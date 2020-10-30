@@ -1,16 +1,13 @@
-# -*- coding: iso-8859-1 -*-
 from RotaryEncoder import RotaryEncoder
 
 from time import sleep
 import sys
 import os
-import locale
+
 
 import RPi.GPIO as GPIO
 import phue
 
-# os.environ["PYTHONIOENCODING"] = "utf-8"
-# myLocale=locale.setlocale(category=locale.LC_ALL, locale="de_DE.UTF-8");
 
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
@@ -24,9 +21,11 @@ def cls():
 
 def print_item():
     print('\n')
-    print('********************************************')
-    print('*    #' + str(list_index + 1) + ' Group: ' + itemlist[list_index])
-    print('********************************************')
+    print('++++++++++++++++++++++++++++++++++++++++++++')
+    print('*\n')
+    print('*        #' + str(list_index + 1) + ' Group: ' + itemlist[list_index] + '')
+    print('*\n')
+    print('++++++++++++++++++++++++++++++++++++++++++++')
 
 
 def decode_rotation(clk):
