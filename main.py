@@ -68,6 +68,11 @@ def decode_rotation(clk):
     else:  # discard all other combinations
         return
 
+def button_callback(sw):
+    itemlist.clear()
+    for key, value in api_response['groups'].items()[itemlist[list_index]].items():
+        itemlist.append(value['name'])
+
 
 try:
 
