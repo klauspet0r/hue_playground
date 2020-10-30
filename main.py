@@ -70,6 +70,7 @@ def decode_rotation(clk):
 
 def button_callback(sw):
     itemlist.clear()
+    print('button pressed')
     for key, value in api_response['groups'].items()[itemlist[list_index]].items():
         itemlist.append(value['name'])
 
