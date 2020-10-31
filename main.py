@@ -18,7 +18,7 @@ def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def print_item():
+def print_item(itemlist):
     print('\n')
     print('++++++++++++++++++++++++++++++++++++++++++++')
     print('*')
@@ -44,7 +44,7 @@ def decode_rotation(clk):
         if list_index > len(itemlist) - 1:
             list_index = 0
         cls()
-        print_item()
+        print_item(itemlist)
 
         while DT == 0:
             DT = GPIO.input(dt)
@@ -58,7 +58,7 @@ def decode_rotation(clk):
         if list_index < 0 or list_index > len(itemlist):
             list_index = len(itemlist) - 1
         cls()
-        print_item()
+        print_item(itemlist)
         while CLK == 1:
             CLK = GPIO.input(clk)
         return
@@ -69,7 +69,7 @@ def decode_rotation(clk):
 
 def button_callback(sw):
     #itemlist.clear()
-    print('button pressed')
+    print('button pressed at position: ' + )
     #for key, value in api_response['groups'].items()[itemlist[list_index]].items():
         #itemlist.append(value['name'])
 
