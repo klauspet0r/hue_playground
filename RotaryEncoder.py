@@ -10,7 +10,7 @@ class RotaryEncoder:
 
     def __init__(self, clk, dt, sw, decode_rotation, button_callback):
 
-        self.value_changed = False
+
         self.decoder_counter = 0
         self.clk = clk
         self.dt = dt
@@ -32,5 +32,3 @@ class RotaryEncoder:
 
         return
 
-    def get_value_change(self):
-        return self.value_changed
