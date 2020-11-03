@@ -7,6 +7,8 @@ import os
 import RPi.GPIO as GPIO
 import phue
 
+import extract_dicts_from_api
+
 clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
 sw = 24  # gpio pin for the button
