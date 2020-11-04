@@ -45,7 +45,7 @@ def decode_rotation(clk):
         list_index += 1
         if list_index > len(itemlist) - 1:
             list_index = 0
-        #cls()
+        cls()
         print_item(itemlist)
 
         while DT == 0:
@@ -59,7 +59,7 @@ def decode_rotation(clk):
         list_index -= 1
         if list_index < 0 or list_index > len(itemlist):
             list_index = len(itemlist) - 1
-        #cls()
+        cls()
         print_item(itemlist)
         while CLK == 1:
             CLK = GPIO.input(clk)
