@@ -1,23 +1,13 @@
 import phue
 import sys
 
+bridge = phue.Bridge(sys.argv[1])
 
-def connect_to_bridge(bridge):
-    bridge.connect()
+bridge.connect()
 
-    print('\nConnected to bridge \n')
+print('\nConnected to bridge' + str(sys.argv[1]) + '\n')
 
-    return bridge
-
-
-def get_api_response(bridge):
-    connect_to_bridge(bridge)
-    return bridge.get_api()
-
-
-bridge = phue.Bridge(str(sys.argv[0]))
-
-api_response = get_api_response(bridge)
+api_response = bridge.get_api()
 
 lights = {}
 groups = {}
