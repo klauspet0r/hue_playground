@@ -13,7 +13,7 @@ clk = 22  # gpio pin for clk
 dt = 23  # gpio pin for dt
 sw = 24  # gpio pin for the button
 list_index = 0
-itemlistdict = {}
+itemlist = []
 
 
 def cls():
@@ -43,10 +43,10 @@ def decode_rotation(clk):
 
     if (CLK == 1) and (DT == 0):
         list_index += 1
-        if list_index > len(itemlistdict) - 1:
+        if list_index > len(itemlist) - 1:
             list_index = 0
         cls()
-        print_item(itemlistdict)
+        print_item(itemlist)
 
         while DT == 0:
             DT = GPIO.input(dt)
@@ -57,10 +57,10 @@ def decode_rotation(clk):
 
     elif (CLK == 1) and (DT == 1):
         list_index -= 1
-        if list_index < 0 or list_index > len(itemlistdict):
-            list_index = len(itemlistdict) - 1
+        if list_index < 0 or list_index > len(itemlist):
+            list_index = len(itemlist) - 1
         cls()
-        print_item(itemlistdict)
+        print_item(itemlist)
         while CLK == 1:
             CLK = GPIO.input(clk)
         return
@@ -71,7 +71,7 @@ def decode_rotation(clk):
 
 def button_callback(sw):
     #itemlist.clear()
-    print('button pressed at position: ' + str(itemlistdict[list_index]))
+    print('button pressed at position: ' + str(itemlist[list_index]))
     #for key, value in api_response['groups'].items()[itemlist[list_index]].items():
         #itemlist.append(value['name'])
 
@@ -110,8 +110,8 @@ try:
 
     # print(str(api_response['lights'].items()))
 
-    #for key, value in api_response['groups'].items():
-    #    itemlist.append(value['name'])
+    for key, value in groups.items():
+        itemlist.append(key)
 
     rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation)
 
