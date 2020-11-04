@@ -73,7 +73,9 @@ def button_callback(sw):
     global list_index
     itemlist = groups[itemlist[list_index]]
     list_index = 0
+    print('before print_item(itemlist)')
     print_item(itemlist)
+    print('after print_item(itemlist)')
 
 
 
