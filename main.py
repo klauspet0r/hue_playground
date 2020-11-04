@@ -70,10 +70,13 @@ def decode_rotation(clk):
 
 
 def button_callback(sw):
-    #itemlist.clear()
-    print('button pressed at position: ' + str(itemlist[list_index]))
-    #for key, value in api_response['groups'].items()[itemlist[list_index]].items():
-        #itemlist.append(value['name'])
+    global itemlist
+    global list_index
+    itemlist = groups[list_index]
+    list_index = 0
+    print_item(itemlist)
+
+
 
 
 try:
@@ -113,7 +116,7 @@ try:
     for key, value in groups.items():
         itemlist.append(key)
 
-    rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation)
+    rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation, button_callback)
 
     while True:
         sleep(1)
