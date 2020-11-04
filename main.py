@@ -107,9 +107,15 @@ try:
         for key, value in api_response['groups'].items():
             groups[value['name']] = value['lights']
 
+    def correlate_names_to_numbers():
+        for key, value in groups.items():
+            for i in range(len(value)):
+                value[i] = lights[value[i]]
+
 
     fill_lights_dict()
     fill_groups_dict()
+    correlate_names_to_numbers()
 
     # print(str(api_response['lights'].items()))
 
