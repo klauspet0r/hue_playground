@@ -72,7 +72,7 @@ def decode_rotation(clk):
 def button_callback(sw):
     global itemlist
     global list_index
-    itemlist = groups[list_index]
+    itemlist = groups[itemlist[list_index]]
     list_index = 0
     print_item(itemlist)
 
