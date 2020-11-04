@@ -89,6 +89,25 @@ try:
     print('Number of connected lamps: ' + str(len(api_response['lights'])) + '\n')
     print('Number of groups: ' + str(len(api_response['groups'])) + '\n')
 
+    lights = {}
+    groups = {}
+
+
+    def fill_lights_dict():
+        global lights
+        for key, value in api_response['lights'].items():
+            lights[key] = value['name']
+
+
+    def fill_groups_dict():
+        global groups
+        for key, value in api_response['groups'].items():
+            groups[value['name']] = value['lights']
+
+
+    fill_lights_dict()
+    fill_groups_dict()
+
     # print(str(api_response['lights'].items()))
 
     for key, value in api_response['groups'].items():
