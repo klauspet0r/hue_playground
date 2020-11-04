@@ -73,7 +73,7 @@ def button_callback(sw):
     global itemlist
     global list_index
     itemlist = groups[itemlist[list_index]]
-    list_index = 1
+    list_index = 0
     print_item(itemlist)
 
 
