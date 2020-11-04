@@ -21,7 +21,7 @@ def cls():
 
 
 def print_item(itemlist):
-    cls()
+    #cls()
     print('\n')
     print('++++++++++++++++++++++++++++++++++++++++++++')
     print('*')
