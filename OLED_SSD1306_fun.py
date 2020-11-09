@@ -65,3 +65,7 @@ line2 = str(line2, 'utf-8')
 line3 = '*   KLS1   *'
 
 show_on_oled(line1, line2, line3)
+
+time.sleep(3)
+
+show_on_oled(line1, line2, 'something else')
