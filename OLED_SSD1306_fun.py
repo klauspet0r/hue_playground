@@ -69,8 +69,10 @@ line3 = '*     KLS1     *'
 try:
 
     while True:
+        show_on_oled(line1)
+        show_on_oled(line1, line2)
         show_on_oled(line1, line2, line3)
-        show_on_oled(line1, line2, 'something else')
+        show_on_oled(line1, line2, 'something else', 'zeile vier')
 
 except KeyboardInterrupt:
     print('Programm interrupted by Strg+C')
