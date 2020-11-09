@@ -64,7 +64,7 @@ cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]
 line2 = subprocess.check_output(cmd, shell=True)
 line2 = str(line2, 'utf-8')
 
-line3 = '*   KLS1   *'
+line3 = '*     KLS1     *'
 
 try:
 
