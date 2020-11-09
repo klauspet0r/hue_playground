@@ -75,4 +75,5 @@ try:
         show_on_oled(line1, line2, 'something else', 'zeile vier', disp=display)
 
 except KeyboardInterrupt:
+    display.clear()
     print('Programm interrupted by Strg+C')
