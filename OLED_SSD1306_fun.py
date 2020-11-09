@@ -25,7 +25,7 @@ def show_on_oled(*lines):
 
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    padding = 1
+    padding = 2
     top = padding
     bottom = height - padding
     x = int(sys.argv[2])
@@ -35,7 +35,7 @@ def show_on_oled(*lines):
 
     #while True:
     # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width-1, height-1), outline=254, fill=0)
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
     # cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
