@@ -45,7 +45,7 @@ while True:
     # Disk = subprocess.check_output(cmd, shell = True )
 
     draw.text((x, top), 'HUE HUB', font=font, fill=255)
-    draw.text((x-4, top + font_size), 'IP: ' + str(IP,'utf-8'), font=font, fill=255)
+    draw.text((x, top + font_size), 'IP: ' + str(IP,'utf-8'), font=font, fill=255)
     draw.text((x, top + font_size * 2), 'WORK IN PROGRESS', font=font, fill=255)
 
     # Display image.
