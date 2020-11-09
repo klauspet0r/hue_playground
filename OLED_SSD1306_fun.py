@@ -53,7 +53,7 @@ def show_on_oled(*lines):
     # Display image.
     disp.image(image)
     disp.display()
-    time.sleep(3)
+    time.sleep(1)
 
 
 line1 = 'HUE HUB'
@@ -64,8 +64,11 @@ line2 = str(line2, 'utf-8')
 
 line3 = '*   KLS1   *'
 
-show_on_oled(line1, line2, line3)
+try:
 
-#time.sleep(3)
+    while True:
+        show_on_oled(line1, line2, line3)
+        show_on_oled(line1, line2, 'something else')
 
-show_on_oled(line1, line2, 'something else')
+except KeyboardInterrupt:
+    print('Programm interrupted by Strg+C')
