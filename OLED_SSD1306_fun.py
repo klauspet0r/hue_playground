@@ -47,7 +47,7 @@ def show_on_oled(*lines):
     # cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
     # Disk = subprocess.check_output(cmd, shell = True )
 
-    line_counter = 1
+    line_counter = 0
     for line in lines:
         draw.text((x, top + font_size * line_counter), line, font=font, fill=255)
         line_counter += 1
