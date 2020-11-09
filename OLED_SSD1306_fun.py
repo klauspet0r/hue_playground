@@ -29,7 +29,7 @@ def show_on_oled(*lines):
     top = padding
     bottom = height - padding
     x = 0
-    font_size = sys.argv[1]
+    font_size = int(sys.argv[1])
     font = ImageFont.truetype('VCR_OSD_MONO_1.001.ttf', font_size)
 
     #while True:
