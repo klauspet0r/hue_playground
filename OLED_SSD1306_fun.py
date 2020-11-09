@@ -59,7 +59,7 @@ def show_on_oled(*lines):
 line1 = 'HUE HUB'
 
 cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-line2 = str(subprocess.check_output(cmd, shell=True))
+line2 = str(subprocess.check_output(cmd, shell=True)).replace('\n','')
 
 line3 = '*   KLS1   *'
 
