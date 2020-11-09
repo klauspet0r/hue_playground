@@ -49,7 +49,7 @@ def show_on_oled(*lines):
 
     line_counter = 1
     for line in lines:
-        draw.text((x, top + font_size * line_counter), lines[0], font=font, fill=255)
+        draw.text((x, top + font_size * line_counter), line, font=font, fill=255)
     line_counter = 1
     # Display image.
     disp.image(image)
