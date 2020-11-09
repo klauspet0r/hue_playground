@@ -29,7 +29,7 @@ def show_on_oled(*lines):
     top = padding
     bottom = height - padding
     x = 0
-    font_size = 12
+    font_size = 13
     font = ImageFont.truetype('VCR_OSD_MONO_1.001.ttf', font_size)
 
     #while True:
@@ -46,8 +46,8 @@ def show_on_oled(*lines):
     # cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
     # Disk = subprocess.check_output(cmd, shell = True )
 
-    draw.text((x, top), lines[0], font=font, fill=255)
-    draw.text((x, top + font_size), lines[1], font=font, fill=255)
+    draw.text((x, top + font_size * 0), lines[0], font=font, fill=255)
+    draw.text((x, top + font_size * 1), lines[1], font=font, fill=255)
     draw.text((x, top + font_size * 2), lines[2], font=font, fill=255)
 
     # Display image.
