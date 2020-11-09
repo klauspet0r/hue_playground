@@ -31,7 +31,7 @@ def show_on_oled(*lines):
     x = int(sys.argv[2])
     font_size = int(sys.argv[1])
     font = ImageFont.load_default()
-    font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
+    #font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
 
     #while True:
     # Draw a black filled box to clear the image.
