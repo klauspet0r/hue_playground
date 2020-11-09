@@ -9,10 +9,10 @@ from PIL import ImageFont
 
 import subprocess
 
+display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
-def show_on_oled(*lines):
-    disp = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
+def show_on_oled(*lines, disp):
     disp.begin()
     disp.clear()
     disp.display()
@@ -31,9 +31,9 @@ def show_on_oled(*lines):
     x = int(sys.argv[2])
     font_size = int(sys.argv[1])
     font = ImageFont.load_default()
-    #font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
+    # font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
 
-    #while True:
+    # while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
@@ -69,10 +69,10 @@ line3 = '*     KLS1     *'
 try:
 
     while True:
-        show_on_oled(line1)
-        show_on_oled(line1, line2)
-        show_on_oled(line1, line2, line3)
-        show_on_oled(line1, line2, 'something else', 'zeile vier')
+        show_on_oled(line1, display)
+        show_on_oled(line1, line2, display)
+        show_on_oled(line1, line2, line3, display)
+        show_on_oled(line1, line2, 'something else', 'zeile vier', display)
 
 except KeyboardInterrupt:
     print('Programm interrupted by Strg+C')
