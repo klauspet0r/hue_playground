@@ -32,28 +32,28 @@ def show_on_oled(*lines):
     font_size = 12
     font = ImageFont.truetype('VCR_OSD_MONO_1.001.ttf', font_size)
 
-    while True:
-        # Draw a black filled box to clear the image.
-        draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    #while True:
+    # Draw a black filled box to clear the image.
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-        # # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
-        # cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-        # IP = subprocess.check_output(cmd, shell=True)
-        # cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
-        # CPU = subprocess.check_output(cmd, shell = True )
-        # cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
-        # MemUsage = subprocess.check_output(cmd, shell = True )
-        # cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
-        # Disk = subprocess.check_output(cmd, shell = True )
+    # # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
+    # cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+    # IP = subprocess.check_output(cmd, shell=True)
+    # cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
+    # CPU = subprocess.check_output(cmd, shell = True )
+    # cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
+    # MemUsage = subprocess.check_output(cmd, shell = True )
+    # cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
+    # Disk = subprocess.check_output(cmd, shell = True )
 
-        draw.text((x, top), lines[0], font=font, fill=255)
-        draw.text((x, top + font_size), lines[1], font=font, fill=255)
-        draw.text((x, top + font_size * 2), lines[2], font=font, fill=255)
+    draw.text((x, top), lines[0], font=font, fill=255)
+    draw.text((x, top + font_size), lines[1], font=font, fill=255)
+    draw.text((x, top + font_size * 2), lines[2], font=font, fill=255)
 
-        # Display image.
-        disp.image(image)
-        disp.display()
-        time.sleep(.1)
+    # Display image.
+    disp.image(image)
+    disp.display()
+    time.sleep(3)
 
 
 line1 = 'HUE HUB'
@@ -66,6 +66,6 @@ line3 = '*   KLS1   *'
 
 show_on_oled(line1, line2, line3)
 
-time.sleep(3)
+#time.sleep(3)
 
 show_on_oled(line1, line2, 'something else')
