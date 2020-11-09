@@ -35,7 +35,7 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
-    cmd = "hostname -I | cut -d\' \' -f1"
+    cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
     IP = subprocess.check_output(cmd, shell=True)
     # cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
     # CPU = subprocess.check_output(cmd, shell = True )
