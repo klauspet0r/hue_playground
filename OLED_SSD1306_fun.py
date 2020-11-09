@@ -1,7 +1,7 @@
 import time
 
-import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
+import sys
 
 from PIL import Image
 from PIL import ImageDraw
@@ -29,7 +29,7 @@ def show_on_oled(*lines):
     top = padding
     bottom = height - padding
     x = 0
-    font_size = 13
+    font_size = sys.argv[1]
     font = ImageFont.truetype('VCR_OSD_MONO_1.001.ttf', font_size)
 
     #while True:
