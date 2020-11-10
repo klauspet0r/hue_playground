@@ -195,7 +195,7 @@ try:
     fill_groups_dict()
     correlate_names_to_numbers()
 
-    print(itemlist)
+
 
     # print(str(api_response['lights'].items()))
 
@@ -203,7 +203,7 @@ try:
         itemlist.append(key)
 
     # rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation, button_callback)
-
+    print(itemlist)
     show_on_oled(itemlist, disp=display)
 
     while True:
