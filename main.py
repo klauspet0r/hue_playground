@@ -153,10 +153,10 @@ try:
 
     api_response = bridge.get_api()
 
-    messages = ["Connected to Brigde", "No. of lamps: " + str(len(api_response['lights'])),
-                'Number of groups: ' + str(len(api_response['groups']))]
+    #messages = ["Connected to Brigde", "No. of lamps: " + str(len(api_response['lights'])),
+    #            'Number of groups: ' + str(len(api_response['groups']))]
 
-    show_on_oled(messages, disp=display)
+    #show_on_oled(messages, disp=display)
 
     lights = {}
     groups = {}
