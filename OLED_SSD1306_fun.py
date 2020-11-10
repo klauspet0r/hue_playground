@@ -48,9 +48,9 @@ def show_on_oled(lines, disp):
     total_height = (font_size + 1) * len(lines)
     print('Total height of lines to be printed is: {} pixels'.format(total_height))
 
-    direction = 0  # 0 is up for the first time, 1 is up,  -1 is down
+    direction = 1  # 0 is up for the first time, 1 is up,  -1 is down
 
-    if direction == (1 or 0):
+    if direction == 1:
         print('if direction == (1 or 0)')
         # for y_dash in range(0, total_height):
         #     draw.rectangle((0, 0, width, height), outline=0, fill=0)
