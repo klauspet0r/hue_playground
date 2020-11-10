@@ -142,11 +142,10 @@ try:
 
     api_response = bridge.get_api()
 
-    connect_message = 'Connected to Brigde'
-    number_of_connected_lamps_message = 'No. of lamps: ' + str(len(api_response['lights']))
-    number_of_groups_message = 'Number of groups: ' + str(len(api_response['groups']))
+    messages = ["Connected to Brigde", "No. of lamps: " + str(len(api_response['lights'])),
+                'Number of groups: ' + str(len(api_response['groups']))]
 
-    show_on_oled(connect_message, number_of_connected_lamps_message, number_of_groups_message, disp=display)
+    show_on_oled(messages, disp=display)
 
     lights = {}
     groups = {}
@@ -168,8 +167,6 @@ try:
         for key, value in groups.items():
             for i in range(len(value)):
                 value[i] = lights[value[i]]
-
-
 
 
     fill_lights_dict()
