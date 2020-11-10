@@ -141,7 +141,7 @@ itemlist = []
 
 try:
 
-    bridge_ip = str(sys.argv[1])
+    bridge_ip = '192.168.2.100'
 
     bridge = phue.Bridge(str(bridge_ip))
 
