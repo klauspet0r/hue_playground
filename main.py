@@ -28,7 +28,7 @@ def show_on_oled(*lines, disp):
 
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    padding = 2
+    padding = 0
     top = padding
     bottom = height - padding
     x = 0
