@@ -32,7 +32,7 @@ def show_on_oled(lines, disp):
     top = padding
     bottom = height - padding
     x = 0
-    font_size = 10
+    font_size = 12
     font = ImageFont.load_default()
     # font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
 
@@ -57,6 +57,7 @@ def show_on_oled(lines, disp):
     for line in lines:
         max_width, max_height = draw.textsize(line, font=font)
         total_height += max_height
+        print(str(total_height))
         if total_height < max_display_height:
             draw.text((x, top + font_size * line_counter), line, font=font, fill=255)
             line_counter += 1
