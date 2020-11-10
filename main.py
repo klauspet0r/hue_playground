@@ -142,8 +142,8 @@ try:
 
     api_response = bridge.get_api()
 
-    connect_message = 'Connected to HUE-Brigde'
-    number_of_connected_lamps_message = 'Number of connected lamps: ' + str(len(api_response['lights']))
+    connect_message = 'Connected to Brigde'
+    number_of_connected_lamps_message = 'No. of lamps: ' + str(len(api_response['lights']))
     number_of_groups_message = 'Number of groups: ' + str(len(api_response['groups']))
 
     show_on_oled(connect_message, number_of_connected_lamps_message, number_of_groups_message, disp=display)
