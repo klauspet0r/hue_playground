@@ -69,7 +69,7 @@ def show_on_oled(lines, disp):
         # Display image.
         disp.image(image)
         disp.display()
-        sleep(1)
+        sleep(float(sys.argv[0]))
 
 
 # import extract_dicts_from_api
