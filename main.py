@@ -29,7 +29,7 @@ def show_on_oled(lines, disp):
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     padding = 0
-    top = padding
+    y = padding
     bottom = height - padding
     x = 0
     font_size = 8
@@ -56,15 +56,14 @@ def show_on_oled(lines, disp):
 
     total_height = (font_size + 1) * len(lines)
 
-    for x_dash in range(total_height):
+    for y_dash in range(total_height):
         disp.clear()
         disp.display()
 
         for index, line in enumerate(lines):
             # max_width, max_height = draw.textsize(line, font=font)
             print(str(total_height))
-            if total_height <= max_display_height:
-                draw.text((x - x_dash, top + font_size * line_counter), lines[index], font=font, fill=255)
+            draw.text((x, (y - y_dash) + font_size * line_counter), lines[index], font=font, fill=255)
             line_counter += 1
         # elif total_height > max_display_height:
 
