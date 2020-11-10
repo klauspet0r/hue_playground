@@ -73,7 +73,7 @@ def show_on_oled(lines, disp):
                 disp.display()
                 sleep(myargs.ssd)
 
-                if y_act < -total_height:
+                if y_act <= -total_height:
                     direction = -1
 
         if direction == -1:
