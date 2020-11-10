@@ -14,7 +14,7 @@ display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
-parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
+#parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
 myargs = parser.parse_args()
 
 
@@ -31,8 +31,10 @@ def show_on_oled(lines, disp):
 
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    y = 0
-    x = 0
+    y_0 = 0
+    x_0 = 0
+    y_act = 0
+
     font_size = 8
 
     font = ImageFont.truetype('Minecraftia-Regular.ttf', font_size)
@@ -42,29 +44,57 @@ def show_on_oled(lines, disp):
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     line_counter = 0
-    total_height = 0
 
     total_height = (font_size + 1) * len(lines)
     print('Total height of lines to be printed is: {} pixels'.format(total_height))
 
-    direction = 1  # 1 is up,  -1 is down
+    direction = 1  # 0 is up for the first time, 1 is up,  -1 is down
 
-    for y_dash in range(total_height):
-        draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    while True:
 
-        for index, line in enumerate(lines):
-            if y_dash <= total_height:
-                draw.text((x, (y - y_dash * 2) + font_size * line_counter), lines[index], font=font, fill=255)
-                line_counter += 1
-                # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+        if direction is 1 or 0:
+            for y_dash in range(0, total_height):
+                draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-        # elif total_height > max_display_height:
+                for index, line in enumerate(lines):
+                    y_act = y_0 - y_dash
+                    if direction is 1:
+                        y_act += height
+                    draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
+                    line_counter += 1
+                    # TODO: Implement this in a way, that only the lines that fit the display are added to the image
 
-        line_counter = 1
-        # Display image.
-        disp.image(image)
-        disp.display()
-        sleep(myargs.ssd)
+                # elif total_height > max_display_height:
+
+                line_counter = 1
+                # Display image.
+                disp.image(image)
+                disp.display()
+                sleep(myargs.ssd)
+
+                if y_act < -total_height:
+                    direction = -1
+
+        elif direction is -1:
+            for y_dash in range(0, total_height + height):
+                draw.rectangle((0, 0, width, height), outline=0, fill=0)
+
+                for index, line in enumerate(lines):
+                    y_act = -total_height + y_dash
+                    draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
+                    line_counter += 1
+                    # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+
+                # elif total_height > max_display_height:
+
+                line_counter = 1
+                # Display image.
+                disp.image(image)
+                disp.display()
+                sleep(myargs.ssd)
+
+                if y_act < -height:
+                    direction = -1
 
 
 itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'pc', 'Spielecke', 'Küche Spots', 'tv', 'Esstisch',
@@ -73,9 +103,6 @@ itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'pc', 'Spielecke', '
 try:
 
     show_on_oled(itemlist, disp=display)
-
-    #while True:
-        #sleep(1)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     GPIO.cleanup()
