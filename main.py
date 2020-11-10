@@ -18,7 +18,7 @@ display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
-parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
+parser.add_argument('--pts', type=int, default=1, help='this determines how many pixel are scrolled each time')
 myargs = parser.parse_args()
 
 
@@ -71,7 +71,7 @@ def show_on_oled(lines, disp):
         for index, line in enumerate(lines):
             if y_dash <= total_height:
 
-                draw.text((x, (y - y_dash * 2) + font_size * line_counter), lines[index], font=font, fill=255)
+                draw.text((x, (y - y_dash * myargs.pts) + font_size * line_counter), lines[index], font=font, fill=255)
                 line_counter += 1
                 # TODO: Implement this in a way, that only the lines that fit the display are added to the image
 
