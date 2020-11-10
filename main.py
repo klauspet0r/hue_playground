@@ -15,7 +15,7 @@ import subprocess
 display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
 
-def show_on_oled(*lines, disp):
+def show_on_oled(lines, disp):
     disp.begin()
     disp.clear()
     disp.display()
