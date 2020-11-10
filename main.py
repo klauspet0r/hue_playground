@@ -58,7 +58,7 @@ def show_on_oled(*lines, disp):
     # Display image.
     disp.image(image)
     disp.display()
-    time.sleep(1)
+    sleep(1)
 
 
 # import extract_dicts_from_api
