@@ -48,7 +48,7 @@ def show_on_oled(lines, disp):
     total_height = (font_size + 1) * len(lines)
     print('Total height of lines to be printed is: {} pixels'.format(total_height))
 
-    direction = 1  # 0 is up for the first time, 1 is up,  -1 is down
+    direction = 0  # 0 is up for the first time, 1 is up,  -1 is down
 
     while True:
 
@@ -58,6 +58,7 @@ def show_on_oled(lines, disp):
 
                 for index, line in enumerate(lines):
                     y_act = y_0 - y_dash
+                    print(str(y_act))
                     if direction is 1:
                         y_act += height
                     draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
@@ -81,6 +82,7 @@ def show_on_oled(lines, disp):
 
                 for index, line in enumerate(lines):
                     y_act = -total_height + y_dash
+                    print(str(y_act))
                     draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
                     line_counter += 1
                     # TODO: Implement this in a way, that only the lines that fit the display are added to the image
