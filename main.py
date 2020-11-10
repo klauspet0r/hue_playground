@@ -1,5 +1,7 @@
 from RotaryEncoder import RotaryEncoder
 
+import argparse
+
 from time import sleep
 import sys
 import os
@@ -13,6 +15,10 @@ from PIL import ImageFont
 import subprocess
 
 display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--ssd', type=float, default=0.5, help='this determines the scroll speed of the display')
+myargs = parser.parse_args()
 
 
 def show_on_oled(lines, disp):
@@ -69,7 +75,7 @@ def show_on_oled(lines, disp):
         # Display image.
         disp.image(image)
         disp.display()
-        sleep(float(sys.argv[0]))
+        sleep(myargs.ssd)
 
 
 # import extract_dicts_from_api
