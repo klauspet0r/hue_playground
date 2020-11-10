@@ -195,6 +195,8 @@ try:
     fill_groups_dict()
     correlate_names_to_numbers()
 
+    print(itemlist)
+
     # print(str(api_response['lights'].items()))
 
     for key, value in groups.items():
