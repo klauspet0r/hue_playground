@@ -52,9 +52,9 @@ def show_on_oled(lines, disp):
 
     line_counter = 0
     for line in lines:
-        draw.rectangle((0, 0, width, height), outline=0, fill=0)
+        maxwidth, maxheight = draw.textsize(line, font=font)
+        print('Line: ' + line + ' has the width: ' + str(maxwidth) + " and height: " + str(maxheight))
         draw.text((x, top + font_size * line_counter), line, font=font, fill=0)
-        print(str(draw.textsize(draw.text((x, top + font_size * line_counter), line, font=font, fill=0))))
         line_counter += 1
     line_counter = 1
     # Display image.
