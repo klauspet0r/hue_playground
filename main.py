@@ -59,16 +59,21 @@ def show_on_oled(lines, disp):
     line_counter = 0
     total_height = 0
 
-
     total_height = (font_size + 1) * len(lines)
     print('Total height of lines to be printed is: {} pixels'.format(total_height))
+
+    direction = 1  # 1 is up,  -1 is down
 
     for y_dash in range(total_height):
         draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
         for index, line in enumerate(lines):
-            draw.text((x, (y - y_dash) + font_size * line_counter), lines[index], font=font, fill=255)
-            line_counter += 1
+            if y_dash <= total_height:
+
+                draw.text((x, (y - y_dash * 2) + font_size * line_counter), lines[index], font=font, fill=255)
+                line_counter += 1
+                # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+
         # elif total_height > max_display_height:
 
         line_counter = 1
@@ -159,10 +164,10 @@ try:
 
     api_response = bridge.get_api()
 
-    #messages = ["Connected to Brigde", "No. of lamps: " + str(len(api_response['lights'])),
+    # messages = ["Connected to Brigde", "No. of lamps: " + str(len(api_response['lights'])),
     #            'Number of groups: ' + str(len(api_response['groups']))]
 
-    #show_on_oled(messages, disp=display)
+    # show_on_oled(messages, disp=display)
 
     lights = {}
     groups = {}
