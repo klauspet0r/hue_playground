@@ -48,56 +48,55 @@ def show_on_oled(lines, disp):
     total_height = (font_size + 1) * len(lines)
     print('Total height of lines to be printed is: {} pixels'.format(total_height))
 
-    while True:
-        direction = 0  # 0 is up for the first time, 1 is up,  -1 is down
+    direction = 0  # 0 is up for the first time, 1 is up,  -1 is down
 
-        if direction == (1 or 0):
-            print('if direction == (1 or 0)')
-            # for y_dash in range(0, total_height):
-            #     draw.rectangle((0, 0, width, height), outline=0, fill=0)
-            #
-            #     for index, line in enumerate(lines):
-            #         y_act = y_0 - y_dash
-            #         print(str(y_act))
-            #         if direction is 1:
-            #             y_act += height
-            #         draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
-            #         line_counter += 1
-            #         # TODO: Implement this in a way, that only the lines that fit the display are added to the image
-            #
-            #     # elif total_height > max_display_height:
-            #
-            #     line_counter = 1
-            #     # Display image.
-            #     disp.image(image)
-            #     disp.display()
-            #     sleep(myargs.ssd)
-            #
-            #     if y_act < -total_height:
-            #         direction = -1
+    if direction == (1 or 0):
+        print('if direction == (1 or 0)')
+        # for y_dash in range(0, total_height):
+        #     draw.rectangle((0, 0, width, height), outline=0, fill=0)
+        #
+        #     for index, line in enumerate(lines):
+        #         y_act = y_0 - y_dash
+        #         print(str(y_act))
+        #         if direction is 1:
+        #             y_act += height
+        #         draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
+        #         line_counter += 1
+        #         # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+        #
+        #     # elif total_height > max_display_height:
+        #
+        #     line_counter = 1
+        #     # Display image.
+        #     disp.image(image)
+        #     disp.display()
+        #     sleep(myargs.ssd)
+        #
+        #     if y_act < -total_height:
+        #         direction = -1
 
-        if direction == -1:
-            print('if direction == -1')
-            # for y_dash in range(0, total_height + height):
-            #     draw.rectangle((0, 0, width, height), outline=0, fill=0)
-            #
-            #     for index, line in enumerate(lines):
-            #         y_act = -total_height + y_dash
-            #         print(str(y_act))
-            #         draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
-            #         line_counter += 1
-            #         # TODO: Implement this in a way, that only the lines that fit the display are added to the image
-            #
-            #     # elif total_height > max_display_height:
-            #
-            #     line_counter = 1
-            #     # Display image.
-            #     disp.image(image)
-            #     disp.display()
-            #     sleep(myargs.ssd)
-            #
-            #     if y_act > height:
-            #         direction = 1
+    if direction == -1:
+        print('if direction == -1')
+        # for y_dash in range(0, total_height + height):
+        #     draw.rectangle((0, 0, width, height), outline=0, fill=0)
+        #
+        #     for index, line in enumerate(lines):
+        #         y_act = -total_height + y_dash
+        #         print(str(y_act))
+        #         draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
+        #         line_counter += 1
+        #         # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+        #
+        #     # elif total_height > max_display_height:
+        #
+        #     line_counter = 1
+        #     # Display image.
+        #     disp.image(image)
+        #     disp.display()
+        #     sleep(myargs.ssd)
+        #
+        #     if y_act > height:
+        #         direction = 1
 
 
 itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'pc', 'Spielecke', 'Küche Spots', 'tv', 'Esstisch',
