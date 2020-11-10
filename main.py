@@ -52,18 +52,15 @@ def show_on_oled(lines, disp):
 
     line_counter = 0
     total_height = 0
-    max_display_height = 32
+
 
     total_height = (font_size + 1) * len(lines)
+    print('Total height of lines to be printed is: {} pixels'.format(total_height))
 
     for y_dash in range(total_height):
-        disp.begin()
-        disp.clear()
-        disp.display()
+        draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
         for index, line in enumerate(lines):
-            # max_width, max_height = draw.textsize(line, font=font)
-            print(str(total_height))
             draw.text((x, (y - y_dash) + font_size * line_counter), lines[index], font=font, fill=255)
             line_counter += 1
         # elif total_height > max_display_height:
