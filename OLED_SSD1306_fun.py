@@ -75,7 +75,7 @@ def show_on_oled(lines, disp):
                 if y_act < -total_height:
                     direction = -1
 
-        elif direction is -1:
+        if direction is -1:
             for y_dash in range(0, total_height + height):
                 draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
