@@ -31,8 +31,8 @@ def show_on_oled(*lines, disp):
     padding = 2
     top = padding
     bottom = height - padding
-    x = int(sys.argv[1])
-    font_size = int(sys.argv[2])
+    x = 0
+    font_size = 12
     font = ImageFont.load_default()
     # font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
 
