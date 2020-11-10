@@ -160,8 +160,8 @@ try:
 
     def fill_groups_dict():
         global groups
-        for group, light in api_response['groups'].items():
-            groups[group['name']] = group['lights']
+        for key, value in api_response['groups'].items():
+            groups[key['name']] = value['lights']
 
 
     def correlate_names_to_numbers():
