@@ -57,6 +57,7 @@ def show_on_oled(lines, disp):
     total_height = (font_size + 1) * len(lines)
 
     for y_dash in range(total_height):
+        disp.begin()
         disp.clear()
         disp.display()
 
