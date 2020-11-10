@@ -34,7 +34,7 @@ def show_on_oled(lines, disp):
     x = 0
     font_size = 8
     # font = ImageFont.load_default()
-    font = ImageFont.truetype('pixelmix.ttf', font_size)
+    font = ImageFont.truetype('Minecraftia-Regular.ttf', font_size)
 
     # while True:
     # Draw a black filled box to clear the image.
