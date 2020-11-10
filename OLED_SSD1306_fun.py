@@ -14,7 +14,7 @@ display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
-#parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
+# parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
 myargs = parser.parse_args()
 
 
@@ -48,9 +48,8 @@ def show_on_oled(lines, disp):
     total_height = (font_size + 1) * len(lines)
     print('Total height of lines to be printed is: {} pixels'.format(total_height))
 
-    direction = 0  # 0 is up for the first time, 1 is up,  -1 is down
-
     while True:
+        direction = 0  # 0 is up for the first time, 1 is up,  -1 is down
 
         if direction == (1 or 0):
             print('if direction == (1 or 0)')
