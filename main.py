@@ -34,7 +34,7 @@ def show_on_oled(lines, disp):
     x = 0
     font_size = 10
     # font = ImageFont.load_default()
-    font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
+    font = ImageFont.truetype('VCR_OSD_MONO_1.001.ttf', font_size)
 
     # while True:
     # Draw a black filled box to clear the image.
