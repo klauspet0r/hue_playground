@@ -160,14 +160,16 @@ try:
 
     def fill_groups_dict():
         global groups
-        for key, value in api_response['groups'].items():
-            groups[value['name']] = value['lights']
+        for group, light in api_response['groups'].items():
+            groups[group['name']] = group['lights']
 
 
     def correlate_names_to_numbers():
         for key, value in groups.items():
             for i in range(len(value)):
                 value[i] = lights[value[i]]
+
+
 
 
     fill_lights_dict()
@@ -180,6 +182,8 @@ try:
         itemlist.append(key)
 
     # rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation, button_callback)
+
+    show_on_oled(itemlist, disp=display)
 
     while True:
         sleep(1)
