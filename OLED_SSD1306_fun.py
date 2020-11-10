@@ -93,8 +93,8 @@ def show_on_oled(lines, disp):
                 disp.display()
                 sleep(myargs.ssd)
 
-                if y_act < -height:
-                    direction = -1
+                if y_act > height:
+                    direction = 1
 
 
 itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'pc', 'Spielecke', 'Küche Spots', 'tv', 'Esstisch',
