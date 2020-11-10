@@ -1,18 +1,24 @@
-import time
+import argparse
+
+from time import sleep
 
 import Adafruit_SSD1306
-import sys
+import RPi.GPIO as GPIO
 
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
-
 import subprocess
 
 display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
+parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
+myargs = parser.parse_args()
 
-def show_on_oled(*lines, disp):
+
+def show_on_oled(lines, disp):
     disp.begin()
     disp.clear()
     disp.display()
@@ -25,55 +31,51 @@ def show_on_oled(*lines, disp):
 
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    padding = 2
-    top = padding
-    bottom = height - padding
-    x = int(sys.argv[1])
-    font_size = int(sys.argv[2])
-    font = ImageFont.load_default()
-    # font = ImageFont.truetype('8-bit-pusab.ttf', font_size)
+    y = 0
+    x = 0
+    font_size = 8
+
+    font = ImageFont.truetype('Minecraftia-Regular.ttf', font_size)
 
     # while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    # # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
-    # cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-    # IP = subprocess.check_output(cmd, shell=True)
-    # cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
-    # CPU = subprocess.check_output(cmd, shell = True )
-    # cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
-    # MemUsage = subprocess.check_output(cmd, shell = True )
-    # cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
-    # Disk = subprocess.check_output(cmd, shell = True )
-
     line_counter = 0
-    for line in lines:
-        draw.text((x, top + font_size * line_counter), line, font=font, fill=255)
-        line_counter += 1
-    line_counter = 1
-    # Display image.
-    disp.image(image)
-    disp.display()
-    time.sleep(1)
+    total_height = 0
+
+    total_height = (font_size + 1) * len(lines)
+    print('Total height of lines to be printed is: {} pixels'.format(total_height))
+
+    direction = 1  # 1 is up,  -1 is down
+
+    for y_dash in range(total_height):
+        draw.rectangle((0, 0, width, height), outline=0, fill=0)
+
+        for index, line in enumerate(lines):
+            if y_dash <= total_height:
+                draw.text((x, (y - y_dash * 2) + font_size * line_counter), lines[index], font=font, fill=255)
+                line_counter += 1
+                # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+
+        # elif total_height > max_display_height:
+
+        line_counter = 1
+        # Display image.
+        disp.image(image)
+        disp.display()
+        sleep(myargs.ssd)
 
 
-line1 = 'HUE HUB'
-
-cmd = "ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
-line2 = subprocess.check_output(cmd, shell=True)
-line2 = str(line2, 'utf-8')
-
-line3 = '*     KLS1     *'
+itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'pc', 'Spielecke', 'Küche Spots', 'tv', 'Esstisch',
+            'Schreibtisch']
 
 try:
 
-    while True:
-        show_on_oled(line1, disp=display)
-        show_on_oled(line1, line2, disp=display)
-        show_on_oled(line1, line2, line3, disp=display)
-        show_on_oled(line1, line2, 'something else', 'zeile vier', disp=display)
+    show_on_oled(itemlist, disp=display)
 
-except KeyboardInterrupt:
-    display.clear()
-    print('Programm interrupted by Strg+C')
+    #while True:
+        #sleep(1)
+
+except KeyboardInterrupt:  # Ctrl-C to terminate the program
+    GPIO.cleanup()
