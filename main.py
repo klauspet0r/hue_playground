@@ -146,7 +146,7 @@ try:
     number_of_connected_lamps_message = 'Number of connected lamps: ' + str(len(api_response['lights']))
     number_of_groups_message = 'Number of groups: ' + str(len(api_response['groups']))
 
-    show_on_oled(connect_message, number_of_connected_lamps_message, number_of_groups_message, display)
+    show_on_oled(connect_message, number_of_connected_lamps_message, number_of_groups_message, disp=display)
 
     lights = {}
     groups = {}
