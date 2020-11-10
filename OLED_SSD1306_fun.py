@@ -52,6 +52,8 @@ def show_on_oled(lines, disp):
 
     while True:
 
+        print(str(direction))
+
         if direction == 1:
 
             for y_dash in range(0, total_height):
