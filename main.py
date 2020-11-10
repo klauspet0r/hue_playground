@@ -55,8 +55,8 @@ def show_on_oled(lines, disp):
     max_display_height = 32
 
     for line in lines:
-        max_width, max_height = draw.textsize(line, font=font)
-        total_height += max_height
+        #max_width, max_height = draw.textsize(line, font=font)
+        total_height += (font_size + 1)
         print(str(total_height))
         if total_height < max_display_height:
             draw.text((x, top + font_size * line_counter), line, font=font, fill=255)
