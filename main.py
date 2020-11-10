@@ -17,7 +17,8 @@ import subprocess
 display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--ssd', type=float, default=0.5, help='this determines the scroll speed of the display')
+parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
+parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
 myargs = parser.parse_args()
 
 
