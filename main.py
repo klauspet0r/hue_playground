@@ -181,6 +181,8 @@ try:
     # rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation, button_callback)
 
     show_on_oled(itemlist, disp=display)
+    for item in itemlist:
+        print(item)
 
     while True:
         sleep(1)
