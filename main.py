@@ -51,11 +51,15 @@ def show_on_oled(lines, disp):
     # Disk = subprocess.check_output(cmd, shell = True )
 
     line_counter = 0
+    total_height = 0
+    max_display_height = 32
+
     for line in lines:
-        maxwidth, maxheight = draw.textsize(line, font=font)
-        print('Line: >> ' + line + ' << has the width: ' + str(maxwidth) + " and height: " + str(maxheight))
-        draw.text((x, top + font_size * line_counter), line, font=font, fill=255)
-        line_counter += 1
+        max_width, max_height = draw.textsize(line, font=font)
+        total_height += max_height
+        if total_height < max_display_height:
+            draw.text((x, top + font_size * line_counter), line, font=font, fill=255)
+            line_counter += 1
     line_counter = 1
     # Display image.
     disp.image(image)
@@ -183,8 +187,6 @@ try:
     # rotary_encoder = RotaryEncoder(clk, dt, sw, decode_rotation, button_callback)
 
     show_on_oled(itemlist, disp=display)
-    for item in itemlist:
-        print(item)
 
     while True:
         sleep(1)
