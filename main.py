@@ -57,6 +57,8 @@ def show_on_oled(lines, disp):
     total_height = (font_size + 1) * len(lines)
 
     for x_dash in range(total_height):
+        disp.clear()
+        disp.display()
 
         for index, line in enumerate(lines):
             # max_width, max_height = draw.textsize(line, font=font)
