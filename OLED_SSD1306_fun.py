@@ -64,22 +64,22 @@ def show_on_oled(lines, disp):
 
         print(scroll_range)
 
-        for y_dash in scroll_range:
-            draw.rectangle((0, 0, width, height), outline=0, fill=0)
-            y_act = y_0 - y_dash
-
-            for index, line in enumerate(lines):
-                draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
-                line_counter += 1
-                # TODO: Implement this in a way, that only the lines that fit the display are added to the image
-
-            # elif total_height > max_display_height:
-
-            line_counter = 1
-            # Display image.
-            disp.image(image)
-            disp.display()
-            sleep(myargs.ssd)
+        # for y_dash in scroll_range:
+        #     draw.rectangle((0, 0, width, height), outline=0, fill=0)
+        #     y_act = y_0 - y_dash
+        #
+        #     for index, line in enumerate(lines):
+        #         draw.text((x_0, y_act + font_size * line_counter), lines[index], font=font, fill=255)
+        #         line_counter += 1
+        #         # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+        #
+        #     # elif total_height > max_display_height:
+        #
+        #     line_counter = 1
+        #     # Display image.
+        #     disp.image(image)
+        #     disp.display()
+        #     sleep(myargs.ssd)
 
     # if direction == -1:
     #     for y_dash in range(0, total_height + height):
