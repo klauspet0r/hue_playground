@@ -15,7 +15,7 @@ display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 parser = argparse.ArgumentParser()
 parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
 parser.add_argument('--fs', type=int, default=8, help='this determines the font size in pixels')
-parser.add_argument('--list', type=list, default=['Wohnzimmer',
+parser.add_argument('--list', type=list, nargs='+', default=['Wohnzimmer',
                                                   'Küche',
                                                   'Schlafzimmer',
                                                   'Flur',
