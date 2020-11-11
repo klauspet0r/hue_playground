@@ -18,6 +18,18 @@ parser.add_argument('--ssd', type=float, default=0.1, help='this determines the 
 myargs = parser.parse_args()
 
 
+def get_scroll_range(scroll_height):
+    scroll_range = []
+
+    for i in range(0, scroll_height + 1):
+        scroll_range.append(i)
+
+    for j in range(scroll_height, 0, -1):
+        scroll_range.append(j)
+
+    return scroll_range
+
+
 def show_on_oled(lines, disp):
     disp.begin()
     disp.clear()
@@ -54,19 +66,11 @@ def show_on_oled(lines, disp):
     scroll_height = total_height - height
     print('scroll_height = {}'.format(scroll_height))
 
-    scroll_range = []
-
-    for i in range(0, scroll_height + 1):
-        scroll_range.append(i)
-
-    for j in range(scroll_height, 0, -1):
-        scroll_range.append(j)
-
     while True:
 
-        print('scroll_range is: {}'.format(scroll_range))
+        print('scroll_range is: {}'.format(get_scroll_range(scroll_height)))
 
-        for outer_index, y_dash in enumerate(scroll_range):
+        for outer_index, y_dash in enumerate(get_scroll_range(scroll_height)):
             draw.rectangle((0, 0, width, height), outline=0, fill=0)
             y_act = y_0 - y_dash
             print('y_act is: {}'.format(y_act))
@@ -75,8 +79,6 @@ def show_on_oled(lines, disp):
                 draw.text((x_0, y_act + (font_size * line_counter)), lines[inner_index], font=font, fill=255)
                 line_counter += 1
                 # TODO: Implement this in a way, that only the lines that fit the display are added to the image
-
-            # elif total_height > max_display_height:
 
             line_counter = 0
             # Display image.
