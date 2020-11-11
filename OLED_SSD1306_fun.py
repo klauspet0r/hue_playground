@@ -109,7 +109,7 @@ def show_on_oled(lines, disp):
     #             direction = -1
 
 
-itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'Schreibtisch']
+itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'Schreibtisch', 'Spielecke', 'PC']
 
 try:
 
