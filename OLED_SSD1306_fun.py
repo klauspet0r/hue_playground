@@ -72,7 +72,7 @@ def show_on_oled(lines, disp):
             print('y_act is: {}'.format(y_act))
 
             for inner_index, line in enumerate(lines):
-                draw.text((x_0, y_act), lines[inner_index], font=font, fill=255)
+                draw.text((x_0, y_act + font_size * line_counter), lines[inner_index], font=font, fill=255)
                 line_counter += 1
                 # TODO: Implement this in a way, that only the lines that fit the display are added to the image
 
