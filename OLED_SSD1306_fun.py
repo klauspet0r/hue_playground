@@ -54,20 +54,13 @@ def show_on_oled(lines, disp):
     scroll_height = total_height - height
     print('scroll_height = {}'.format(scroll_height))
 
-    scroll_range_a = []
-    scroll_range_b = []
+    scroll_range = []
 
     for i in range(0, scroll_height + 1):
-        scroll_range_a.append(i)
+        scroll_range.append(i)
 
-    print('scroll_range_a is: {}'.format(scroll_range_a))
-
-    for j in range(scroll_height, 1, -1):
-        scroll_range_b.append(-j)
-
-    print('scroll_range_b is: {}'.format(scroll_range_b))
-
-    scroll_range = scroll_range_a + scroll_range_b
+    for j in range(scroll_height, 0, -1):
+        scroll_range.append(j)
 
     while True:
 
@@ -79,7 +72,7 @@ def show_on_oled(lines, disp):
             print('y_act is: {}'.format(y_act))
 
             for inner_index, line in enumerate(lines):
-                draw.text((x_0, y_act + font_size * line_counter), lines[inner_index], font=font, fill=255)
+                draw.text((x_0, y_act), lines[inner_index], font=font, fill=255)
                 line_counter += 1
                 # TODO: Implement this in a way, that only the lines that fit the display are added to the image
 
