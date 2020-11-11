@@ -51,8 +51,6 @@ def show_on_oled(lines, disp):
 
     direction = 1  # 0 is up for the first time, 1 is up,  -1 is down
 
-    scroll_range = []
-
     while True:
         scroll_height = total_height - height
         print('scroll_height = {}'.format(scroll_height))
@@ -63,8 +61,12 @@ def show_on_oled(lines, disp):
         for i in range(0, scroll_height + 1):
             scroll_range_a.append(i)
 
+        print('scroll_range_a is: {}'.format(scroll_range_a))
+
         for j in range(scroll_height, 1):
             scroll_range_b.append(-j)
+
+        print('scroll_range_b is: {}'.format(scroll_range_b))
 
         scroll_range = scroll_range_a + scroll_range_b
 
