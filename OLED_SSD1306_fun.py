@@ -51,6 +51,7 @@ def show_on_oled(lines, disp):
     direction = 1  # 0 is up for the first time, 1 is up,  -1 is down
 
     while True:
+        print('while True:')
 
         for y_dash in range(0, total_height - height):
             draw.rectangle((0, 0, width, height), outline=0, fill=0)
