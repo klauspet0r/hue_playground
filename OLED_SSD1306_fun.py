@@ -50,11 +50,21 @@ def show_on_oled(lines, disp):
 
     direction = 1  # 0 is up for the first time, 1 is up,  -1 is down
 
+    scroll_range = 0
+
     while True:
         print('while True:')
         scroll_height = total_height - height
 
-        for y_dash in range(0, scroll_height):
+        for i in range(scroll_height):
+            scroll_range.append(i)
+
+        for i in range(scroll_height, 1):
+            scroll_range.append(-i)
+
+        print(scroll_range)
+
+        for y_dash in scroll_range:
             draw.rectangle((0, 0, width, height), outline=0, fill=0)
             y_act = y_0 - y_dash
 
