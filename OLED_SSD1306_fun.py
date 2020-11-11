@@ -14,7 +14,7 @@ display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
-# parser.add_argument('--pts', type=float, default=1, help='this determines how many pixel are scrolled each time')
+parser.add_argument('--fs', type=int, default=8, help='this determines the font size in pixels')
 myargs = parser.parse_args()
 
 
@@ -48,7 +48,7 @@ def show_on_oled(lines, disp):
     x_0 = 0
     y_act = 0
 
-    font_size = 8
+    font_size = myargs.fs
 
     font = ImageFont.truetype('Minecraftia-Regular.ttf', font_size)
 
