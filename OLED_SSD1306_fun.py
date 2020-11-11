@@ -21,7 +21,7 @@ myargs = parser.parse_args()
 def get_scroll_range(scroll_height):
     scroll_range = []
 
-    for i in range(1, scroll_height - 2 + 1):
+    for i in range(1, scroll_height - 4 + 1):
         scroll_range.append(i)
 
     for j in range(scroll_height - 3, 1, -1):
