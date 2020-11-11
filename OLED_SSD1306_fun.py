@@ -57,11 +57,16 @@ def show_on_oled(lines, disp):
         scroll_height = total_height - height
         print('scroll_height = {}'.format(scroll_height))
 
+        scroll_range_a = []
+        scroll_range_b = []
+
         for i in range(0, scroll_height + 1):
-            scroll_range.append(i)
+            scroll_range_a.append(i)
 
         for j in range(scroll_height, 1):
-            scroll_range.append(-j)
+            scroll_range_b.append(-j)
+
+        scroll_range = scroll_range_a + scroll_range_b
 
         # for i in range(scroll_height, 1):
         #     scroll_range.append(-i)
