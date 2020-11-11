@@ -68,7 +68,7 @@ def show_on_oled(lines, disp):
 
         for outer_index, y_dash in enumerate(scroll_range):
             draw.rectangle((0, 0, width, height), outline=0, fill=0)
-            y_act = y_0 - y_dash
+            y_act = y_0 + y_dash
 
             for inner_index, line in enumerate(lines):
                 draw.text((x_0, y_act + font_size * line_counter), lines[inner_index], font=font, fill=255)
