@@ -25,6 +25,7 @@ def show_on_oled(lines, disp):
 
     width = disp.width
     height = disp.height
+    print('display height is: {}'.format(height))
     image = Image.new('1', (width, height))
 
     draw = ImageDraw.Draw(image)
@@ -52,9 +53,10 @@ def show_on_oled(lines, disp):
 
     scroll_range = []
 
-    while True:
+    while direction == 1:
         scroll_height = total_height - height
         print('scroll_height = {}'.format(scroll_height))
+        direction = 0
         #
         # for i in range(scroll_height):
         #     scroll_range.append(i)
