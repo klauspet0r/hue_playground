@@ -1,6 +1,7 @@
 import argparse
 
 from time import sleep
+from typing import Any, Union
 
 import Adafruit_SSD1306
 import RPi.GPIO as GPIO
@@ -75,17 +76,27 @@ def show_on_oled(lines, position, disp):
     scroll_height = total_height - height
 
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
-    y_act = y_0 - position
+
     print('RE position = {}'.format(position))
     print('y_act = {}'.format(y_act))
-
-    if y_act > -scroll_height and y_act <= 0:
+    global y_act
+    y_act: Union[int, Any] = y_0 - position
+    if -scroll_height <= y_act <= 0:
 
         for index, line in enumerate(lines):
             draw.text((x_0, y_act + (font_size * line_counter)), lines[index], font=font, fill=255)
             line_counter += 1
             # TODO: Implement this in a way, that only the lines that fit the display are added to the image
         line_counter = 0
+        global y_act_nm1
+        y_act_nm1 = y_act
+
+
+    elif not (-scroll_height <= y_act <= 0):
+        for index, line in enumerate(lines):
+            draw.text((x_0, y_act_nm1 + (font_size * line_counter)), lines[index], font=font, fill=255)
+            line_counter += 1
+            # TODO: Implement this in a way, that only the lines that fit the display are added to the image
 
     disp.image(image)
     disp.display()
@@ -93,7 +104,7 @@ def show_on_oled(lines, position, disp):
 
 
 def rotation_callback(position, direction):
-    show_on_oled(myargs.list, int((position/4) - (position % 4)), display)
+    show_on_oled(myargs.list, int((position / 4) - (position % 4)), display)
 
 
 def button_callback(name):
