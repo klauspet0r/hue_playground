@@ -126,7 +126,7 @@ for name, pin in buttons.items():
 
 try:
 
-    show_on_oled(myargs.list, disp=display)
+    show_on_oled(myargs.list, 0, disp=display)
     sleep(60)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
