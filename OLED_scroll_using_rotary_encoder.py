@@ -49,7 +49,7 @@ def get_scroll_range(scroll_height):
 
 def show_on_oled(lines, position, disp):
     disp.begin()
-    disp.clear()
+    # disp.clear()
     disp.display()
 
     width = disp.width
@@ -62,6 +62,7 @@ def show_on_oled(lines, position, disp):
 
     y_0 = 0
     x_0 = 0
+    y_act = 0
 
     font_size = myargs.fs
 
@@ -77,11 +78,9 @@ def show_on_oled(lines, position, disp):
 
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    print('RE position = {}'.format(position))
-    print('y_act = {}'.format(y_act))
-    global y_act
-    y_act: Union[int, Any] = y_0 - position
     if -scroll_height <= y_act <= 0:
+
+        y_act = y_0 - position
 
         for index, line in enumerate(lines):
             draw.text((x_0, y_act + (font_size * line_counter)), lines[index], font=font, fill=255)
@@ -127,7 +126,7 @@ for name, pin in buttons.items():
 
 try:
 
-    # show_on_oled(myargs.list, disp=display)
+    show_on_oled(myargs.list, disp=display)
     sleep(60)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
