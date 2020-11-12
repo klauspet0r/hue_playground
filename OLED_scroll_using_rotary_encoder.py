@@ -90,8 +90,7 @@ def show_on_oled(lines, position, disp):
         global y_act_nm1
         y_act_nm1 = y_act
 
-
-    elif not (-scroll_height <= y_act <= 0):
+    elif -scroll_height < y_act or y_act > 0:
         for index, line in enumerate(lines):
             draw.text((x_0, y_act_nm1 + (font_size * line_counter)), lines[index], font=font, fill=255)
             line_counter += 1
@@ -131,3 +130,4 @@ try:
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     display.clear()
+    display.display()
