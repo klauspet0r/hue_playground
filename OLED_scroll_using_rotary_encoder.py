@@ -121,7 +121,8 @@ for name, pin in buttons.items():
 try:
 
     # show_on_oled(myargs.list, disp=display)
-    sleep(1)
+    while True:
+        sleep(1)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     display.clear()
