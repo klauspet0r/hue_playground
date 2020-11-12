@@ -46,7 +46,7 @@ def get_scroll_range(scroll_height):
     return scroll_range
 
 
-def show_on_oled(lines, disp):
+def show_on_oled(lines, position, disp):
     disp.begin()
     disp.clear()
     disp.display()
@@ -61,7 +61,7 @@ def show_on_oled(lines, disp):
 
     y_0 = 0
     x_0 = 0
-    y_act = 0
+
 
     font_size = myargs.fs
 
@@ -75,29 +75,29 @@ def show_on_oled(lines, disp):
 
     scroll_height = total_height - height
 
-    while True:
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    y_act = y_0 - position
+    print('RE position = {}'.format(position))
+    print('y_act = {}'.format(y_act))
 
-        for outer_index, y_dash in enumerate(get_scroll_range(scroll_height)):
-            draw.rectangle((0, 0, width, height), outline=0, fill=0)
-            y_act = y_0 - y_dash
+    if y_act > -scroll_height or y_act <= 0:
 
-            for inner_index, line in enumerate(lines):
-                draw.text((x_0, y_act + (font_size * line_counter)), lines[inner_index], font=font, fill=255)
-                line_counter += 1
-                # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+        for index, line in enumerate(lines):
+            draw.text((x_0, y_act + (font_size * line_counter)), lines[index], font=font, fill=255)
+            line_counter += 1
+            # TODO: Implement this in a way, that only the lines that fit the display are added to the image
+        line_counter = 0
 
-            line_counter = 0
-
-            disp.image(image)
-            disp.display()
-            sleep(myargs.ssd)
+    disp.image(image)
+    disp.display()
+    sleep(myargs.ssd)
 
 
 def rotation_callback(position, direction):
     direction = "<--" if direction < 0 else "-->"
     line = "{} Pos: {}".format(direction, position)
     lines = [line]
-    show_on_oled(lines, display)
+    show_on_oled(lines, position, display)
 
 
 def button_callback(name):
@@ -120,7 +120,8 @@ for name, pin in buttons.items():
 
 try:
 
-    #show_on_oled(myargs.list, disp=display)
+    # show_on_oled(myargs.list, disp=display)
+    sleep(1)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     display.clear()
