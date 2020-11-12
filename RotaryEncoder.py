@@ -1,32 +1,69 @@
-import RPi.GPIO as GPIO
-from time import sleep
+import pigpio
 
 
 class RotaryEncoder:
-    decoder_counter = None
-    value_changed = None
-    clk = None
-    dt = None
+    """
+    RotaryEncoder constructor
 
-    def __init__(self, clk, dt, sw, decode_rotation):
-        self.decoder_counter = 0
-        self.clk = clk
-        self.dt = dt
-        self.sw = sw
+    Arguments:
+    - gpio: a pigpio pi object
+    - callback: function to be called on encoder change callback(int position, int direction)
+    - pin_pair: tuple with the two encoder ouutput io pins
+    - io_gnd: set to False if the encoder common pin is connected to 5v, else True if connected to GND
+    """
 
-        GPIO.setwarnings(True)
+    def __init__(self, gpio, callback, pin_pair, io_gnd=True):
+        self.gpio = gpio
+        self.pins = pin_pair
+        self.callback = callback
 
-        # Use the Raspberry Pi BCM pins
-        GPIO.setmode(GPIO.BCM)
+        self.cbs = []
+        for io in self.pins:
+            gpio.set_mode(io, pigpio.INPUT)
+            gpio.set_pull_up_down(io, pigpio.PUD_UP if io_gnd else pigpio.PUD_DOWN)
+            self.cbs.append(gpio.callback(io, pigpio.EITHER_EDGE, self._pulse))
 
-        # define the Encoder switch inputs
-        GPIO.setup(clk, GPIO.IN)  # pull-ups are too weak, they introduce noise
-        GPIO.setup(dt, GPIO.IN)
-        GPIO.setup(sw, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        self.last_io = None
+        self.level = dict([(io, gpio.read(io)) for io in self.pins])
 
-        # setup an event detection thread for the A encoder switch
-        GPIO.add_event_detect(clk, GPIO.RISING, callback=decode_rotation, bouncetime=20)  # bouncetime in mSec
-        #GPIO.add_event_detect(sw, GPIO.RISING, callback=button_callback)
+        self.position = 0
 
-        return
+    def __enter__(self):
+        return self
 
+    def __exit__(self, exc_type, exc_value, traceback):
+        for cb in self.cbs:
+            cb.cancel()
+
+    def close(self):
+        self.__exit__(None, None, None)
+
+    '''
+    Get the position of the encoder
+    '''
+
+    def get_position(self):
+        return self.position
+
+    '''
+    Set the position of the encoder
+    '''
+
+    def set_position(self, position):
+        self.position = position
+
+    '''
+    Deal with the encoder pulses and call the specified callback
+    '''
+
+    def _pulse(self, io, level, tick):
+        if io != self.last_io:
+            self.last_io = io
+            self.level[io] = level
+
+            other = [v for v in self.pins if v != io][0]
+            factor = 1 if io == self.pins[0] else -1
+            diff = (1 if level != self.level[other] else -1) * factor
+            self.position += diff
+
+            self.callback(self.position, diff)
