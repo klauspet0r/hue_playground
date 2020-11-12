@@ -102,7 +102,7 @@ def show_on_oled(lines, position, disp):
 
 
 def rotation_callback(position, direction):
-    show_on_oled(myargs.list, int((position / 4) - (position % 4)), display)
+    show_on_oled(myargs.list, position, display)
 
 
 def button_callback(name):
@@ -126,7 +126,7 @@ for name, pin in buttons.items():
 try:
 
     show_on_oled(myargs.list, 0, disp=display)
-    sleep(60)
+    print('wait 4 callback')
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     display.clear()
