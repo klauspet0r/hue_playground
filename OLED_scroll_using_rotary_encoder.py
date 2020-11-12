@@ -93,7 +93,7 @@ def show_on_oled(lines, position, disp):
 
 
 def rotation_callback(position, direction):
-    show_on_oled(myargs.lines, position, display)
+    show_on_oled(myargs.list, position, display)
 
 
 def button_callback(name):
