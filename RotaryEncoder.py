@@ -43,7 +43,7 @@ class RotaryEncoder:
     '''
 
     def get_position(self):
-        return self.position
+        return int(self.position/4)
 
     '''
     Set the position of the encoder
