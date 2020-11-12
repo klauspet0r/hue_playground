@@ -62,7 +62,6 @@ def show_on_oled(lines, position, disp):
     y_0 = 0
     x_0 = 0
 
-
     font_size = myargs.fs
 
     font = ImageFont.truetype('C&C Red Alert [INET].ttf', font_size)
@@ -94,10 +93,7 @@ def show_on_oled(lines, position, disp):
 
 
 def rotation_callback(position, direction):
-    direction = "<--" if direction < 0 else "-->"
-    line = "{} Pos: {}".format(direction, position)
-    lines = [line]
-    show_on_oled(lines, position, display)
+    show_on_oled(myargs.lines, position, display)
 
 
 def button_callback(name):
