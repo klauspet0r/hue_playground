@@ -8,19 +8,29 @@ import RPi.GPIO as GPIO
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
-import subprocess
+
+from InterfacePanel import InterfacePanel
+
+rotary_encoder = (22, 27)
+
+buttons = {"ok": 17}  # TODO: add button
+# "back" : 19,
+# "pause" : 5,
+# "forward" : 16,
+# "meny" : 12,
+
 
 display = Adafruit_SSD1306.SSD1306_128_32(rst=None)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--ssd', type=float, default=0.1, help='this determines the scroll speed of the display')
 parser.add_argument('--fs', type=int, default=13, help='this determines the font size in pixels')
-parser.add_argument('--list', type=list, nargs='+', default=[   'Wohnzimmer',
-                                                                  'Küche',
-                                                                  'Schlafzimmer',
-                                                                  'Flur',
-                                                                  'Schreibtisch',
-                                                                  'Spielecke'], help='sets the list to be scrolled')
+parser.add_argument('--list', type=list, nargs='+', default=['Wohnzimmer',
+                                                             'Küche',
+                                                             'Schlafzimmer',
+                                                             'Flur',
+                                                             'Schreibtisch',
+                                                             'Spielecke'], help='sets the list to be scrolled')
 myargs = parser.parse_args()
 
 
@@ -83,11 +93,34 @@ def show_on_oled(lines, disp):
             sleep(myargs.ssd)
 
 
+def rotation_callback(position, direction):
+    direction = "<--" if direction < 0 else "-->"
+    line = "{} Pos: {}".format(direction, position)
+    lines = [line]
+    show_on_oled(lines, display)
+
+
+def button_callback(name):
+    a = 1
+    # if name in ["back", "forward"]:
+    #     print("Button '{}' down....".format(name))
+    #     return button_up
+    # else:
+    #     print("Button '{}' pressed.".format(name))
+    #     return None
+
+
+panel = InterfacePanel()
+
+panel.add_rotary_encoder("Wheel", rotation_callback, *rotary_encoder)
+for name, pin in buttons.items():
+    panel.add_button(name, button_callback, pin)
+
 # itemlist = ['Wohnzimmer', 'Küche', 'Schlafzimmer', 'Flur', 'Schreibtisch', 'Spielecke']
 
 try:
 
-    show_on_oled(myargs.list, disp=display)
+    #show_on_oled(myargs.list, disp=display)
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
-    GPIO.cleanup()
+    display.clear()
