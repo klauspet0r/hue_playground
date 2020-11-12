@@ -126,7 +126,9 @@ for name, pin in buttons.items():
 try:
 
     show_on_oled(myargs.list, 0, disp=display)
-    print('wait 4 callback')
+    print('waiting 60s 4 callback...')
+    sleep(60)
+    print('...time is up!')
 
 except KeyboardInterrupt:  # Ctrl-C to terminate the program
     display.clear()
