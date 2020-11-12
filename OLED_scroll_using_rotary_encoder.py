@@ -79,7 +79,7 @@ def show_on_oled(lines, position, disp):
     print('RE position = {}'.format(position))
     print('y_act = {}'.format(y_act))
 
-    if y_act > -scroll_height or y_act <= 0:
+    if y_act > -scroll_height and y_act <= 0:
 
         for index, line in enumerate(lines):
             draw.text((x_0, y_act + (font_size * line_counter)), lines[index], font=font, fill=255)
