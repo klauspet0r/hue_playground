@@ -35,6 +35,8 @@ parser.add_argument('--list', type=list, nargs='+', default=['Wohnzimmer',
 myargs = parser.parse_args()
 
 
+
+
 def get_scroll_range(scroll_height):
     scroll_range = []
 
@@ -87,10 +89,10 @@ def show_on_oled(lines, position, disp):
             line_counter += 1
             # TODO: Implement this in a way, that only the lines that fit the display are added to the image
         line_counter = 0
-        global y_act_nm1
+        nonlocal y_act_nm1
         y_act_nm1 = y_act
 
-    elif -scroll_height < y_act or y_act > 0:
+    else:
         for index, line in enumerate(lines):
             draw.text((x_0, y_act_nm1 + (font_size * line_counter)), lines[index], font=font, fill=255)
             line_counter += 1
